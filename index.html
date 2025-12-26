@@ -1,36 +1,79 @@
-<div class="dossier-wrapper">
-    <div class="top-secret-stamp">CLASSIFIED</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLASSIFIED // SUBJECT: [YOUR NAME]</title>
     
-    <header>
-        <h1 class="agency-title">CENTRAL INTELLIGENCE AGENCY</h1>
-        <p style="text-align:center;">OFFICE OF THE DIRECTOR | FIELD PERSONNEL FILE</p>
-        <hr style="border: 2px solid #222;">
-    </header>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Barcode+39&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <div class="main-content">
-        <aside>
-            <div class="photo-placeholder" style="border: 10px solid white; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);">
-                <img src="your-image.jpg" style="width:100%; filter: grayscale(1) contrast(1.2);">
-            </div>
-            <div class="stats" style="margin-top:20px;">
-                <p><strong>NAME:</strong> [REDACTED]</p>
-                <p><strong>ID:</strong> CIA-992-ALPHA</p>
-                <p><strong>CLEARANCE:</strong> TOP SECRET</p>
-            </div>
-        </aside>
+    <div class="dossier-wrapper">
+        <div class="stamp top-secret">TOP SECRET // NOFORN</div>
+        <div class="stamp classified">CLASSIFIED</div>
 
-        <main>
-            <h2>OPERATIONAL HISTORY</h2>
-            <p>Subject is a highly skilled developer specializing in <span class="redacted">Cybersecurity and AI Systems</span>. Expert-level proficiency in C++ and Python, with a history of successful deployments in simulated tactical environments.</p>
-            
+        <header class="dossier-header">
+            <h1 class="agency-title">CENTRAL INTELLIGENCE AGENCY</h1>
+            <p class="agency-subtitle">OFFICE OF THE DIRECTOR | PERSONNEL RECORDS DIVISION</p>
+            <div class="file-number">FILE REF: CIA-772-B-991</div>
+            <hr class="double-line">
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="profile-frame">
+                    <img src="your-photo.jpg" alt="Subject Photo" onerror="this.src='https://via.placeholder.com/200x250?text=PHOTO+REDACTED'">
+                    <div class="barcode">YOURNAME2025</div>
+                </div>
+                
+                <div class="vitals">
+                    <p><strong>SUBJECT:</strong> [YOUR NAME]</p>
+                    <p><strong>CITIZENSHIP:</strong> <span class="redacted">UNITED STATES</span></p>
+                    <p><strong>CLEARANCE:</strong> LEVEL 5 (TS/SCI)</p>
+                    <p><strong>ASSIGNMENT:</strong> CYBER OPERATIONS</p>
+                </div>
+            </aside>
+
+            <main class="report-body">
+                <section class="operational-summary">
+                    <h2 class="section-heading">OPERATIONAL SUMMARY (ABOUT ME)</h2>
+                    <p>Subject is a highly specialized developer with a primary focus in <strong>Cybersecurity and Systems Programming</strong>. Known for expertise in <span class="redacted">low-level C++</span> and complex Python automation. Field experience includes the development of tactical simulations and defensive frameworks for network integrity.</p>
+                </section>
+
+                <section class="active-ops">
+                    <h2 class="section-heading">ACTIVE CASE FILES (PROJECTS)</h2>
+                    
+                    <div class="case-file">
+                        <h3>CASE FILE 01: SQUAT SWAT</h3>
+                        <p><strong>OBJECTIVE:</strong> Automated identification of typosquatted domains to prevent phishing vectors.</p>
+                        <p><strong>INTEL:</strong> Built using Python; incorporates custom ranking frameworks for domain risk assessment.</p>
+                        <a href="#" class="intel-link">[ACCESS REPOSITORY]</a>
+                    </div>
+
+                    <div class="case-file">
+                        <h3>CASE FILE 02: UAV RECON SIM</h3>
+                        <p><strong>OBJECTIVE:</strong> High-fidelity multi-threaded UAV simulation for aerial reconnaissance training.</p>
+                        <p><strong>INTEL:</strong> Developed in C++ with OpenGL. Features multi-threaded collision detection and realistic texture mapping.</p>
+                        <a href="#" class="intel-link">[ACCESS REPOSITORY]</a>
+                    </div>
+                </section>
+
+                <section class="credentials">
+                    <h2 class="section-heading">PERSONNEL CREDENTIALS</h2>
+                    <p>For a full history of missions and technical training, access the personnel file below:</p>
+                    <a href="resume.pdf" class="resume-btn" target="_blank">DOWNLOAD RESUME.PDF</a>
+                </section>
+            </main>
+        </div>
+
+        <footer class="dossier-footer">
             <hr>
-            
-            <h2>ACTIVE CASE FILES (PROJECTS)</h2>
-            <div class="project">
-                <h3>PROJECT SQUAT-SWAT</h3>
-                <p>Developing automated countermeasures against DNS-based domain squatting...</p>
-                <a href="#">[ACCESS REPO]</a>
-            </div>
-        </main>
+            <p>WARNING: Unauthorized access to this document is punishable by up to 10 years in <span class="redacted">Federal Prison</span>.</p>
+        </footer>
     </div>
-</div>
+
+</body>
+</html>
