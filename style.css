@@ -83,6 +83,10 @@ body {
     transform: rotate(-10deg);
 }
 
+.red {
+    color: #a31d1d;
+}
+
 /* 4. CSS SEAL WATERMARK */
 .css-seal-watermark {
     position: absolute;
