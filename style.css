@@ -11,7 +11,7 @@ body {
     
     /* UPDATED: Points to local file 'parchment.png' */
     background-image: 
-        radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.12) 100%),
+        radial-gradient(circle, rgba(0,0,0,0) 50%, rgba(0,0,0,0.30) 100%),
         url("parchment.png");
         
     background-attachment: fixed;
