@@ -2,70 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CONFIDENTIAL | Personnel Dossier</title>
-    <style>
-        body {
-            background-color: #1a1a1a; /* Dark terminal feel */
-            color: #d4d4d4;
-            font-family: 'Courier New', Courier, monospace;
-            line-height: 1.6;
-            padding: 50px;
-        }
-        .folder {
-            border: 2px solid #333;
-            max-width: 800px;
-            margin: auto;
-            padding: 40px;
-            background-color: #252525;
-            box-shadow: 10px 10px 0px #000;
-        }
-        .stamp {
-            color: #ff4d4d;
-            border: 4px solid #ff4d4d;
-            display: inline-block;
-            padding: 5px 15px;
-            font-weight: bold;
-            transform: rotate(-5deg);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-        .redacted {
-            background-color: #000;
-            color: #000;
-            transition: color 0.3s ease;
-            cursor: help;
-        }
-        .redacted:hover {
-            color: #33ff33; /* Reveals in green */
-        }
-        h2 { border-bottom: 1px solid #333; padding-bottom: 10px; }
-        a { color: #33ff33; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONFIDENTIAL // SUBJECT: [YOUR NAME]</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="folder">
-        <div class="stamp">Top Secret</div>
-        <h1>PERSONNEL FILE: [YOUR NAME]</h1>
-        
-        <section>
-            <h2>OPERATIONAL SUMMARY</h2>
-            <p>Subject is a <span class="redacted">Specialist in AI and Cybersecurity</span> with expertise in 
-               low-level systems and containerized deployment.</p>
+
+    <div class="paper-container">
+        <header class="dossier-header">
+            <div class="top-secret-stamp">TOP SECRET // NOFORN</div>
+            <div class="agency-title">CENTRAL INTELLIGENCE AGENCY</div>
+            <div class="document-sub">OFFICE OF CYBER INTELLIGENCE | PERSONNEL DIVISION</div>
+            <hr class="double-line">
+        </header>
+
+        <section class="metadata">
+            <div class="photo-placeholder">
+                <img src="your-photo.jpg" alt="Subject Photo" onerror="this.src='https://via.placeholder.com/150?text=REDACTED'">
+                <div class="barcode">|||| || | ||||| ||| |</div>
+            </div>
+            <div class="stats">
+                <p><strong>SUBJECT:</strong> [YOUR NAME]</p>
+                <p><strong>CLEARANCE:</strong> LEVEL 5 (TS/SCI)</p>
+                <p><strong>SPECIALIZATION:</strong> <span class="redacted">Cybersecurity & Multimodal AI</span></p>
+                <p><strong>STATUS:</strong> ACTIVE</p>
+            </div>
         </section>
 
-        <section>
-            <h2>FIELD MISSIONS (PROJECTS)</h2>
-            <ul>
-                <li><strong>Op: UAV SIMULATION</strong> - Multi-threaded C++ engine for <span class="redacted">aerial reconnaissance training</span>.</li>
-                <li><strong>Op: SQUAT SWAT</strong> - Typosquatting detection framework.</li>
-            </ul>
+        <section class="content-box">
+            <h2 class="section-title">EXECUTIVE SUMMARY</h2>
+            <p>Subject is a high-level developer with a focus on <span class="redacted">C++ Systems Programming</span> and Python-based data analysis. Proven track record in simulating complex environments, including bacterial warfare grids and UAV reconnaissance operations.</p>
         </section>
 
-        <section>
-            <h2>ACCESS CREDENTIALS</h2>
-            <p><a href="resume.pdf" target="_blank">> VIEW FULL RESUME</a></p>
+        <section class="content-box">
+            <h2 class="section-title">ACTIVE FIELD OPERATIONS (PROJECTS)</h2>
+            
+            <div class="project">
+                <h3>PROJECT: SQUAT SWAT</h3>
+                <p><strong>OBJECTIVE:</strong> Detection and mitigation of typosquatting domains.</p>
+                <p><strong>INTEL:</strong> <a href="#">[VIEW REPO]</a></p>
+            </div>
+
+            <div class="project">
+                <h3>PROJECT: UAV-SIM</h3>
+                <p><strong>OBJECTIVE:</strong> Multi-threaded OpenGL simulation for aerial assets.</p>
+                <p><strong>INTEL:</strong> <a href="#">[VIEW REPO]</a></p>
+            </div>
         </section>
+
+        <footer class="dossier-footer">
+            <hr>
+            <p><strong>ACCESS FULL DOSSIER:</strong> <a href="resume.pdf" class="file-link">RESUME.PDF</a></p>
+            <div class="id-stamp">DOC ID: 8829-PRO-2025</div>
+        </footer>
     </div>
+
 </body>
 </html>
