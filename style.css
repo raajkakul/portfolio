@@ -26,8 +26,6 @@ body {
         url("parchment.png");
 
     background-attachment: fixed;
-    background-size: cover, cover, 400px 400px, cover, auto; /* Controls the size of the coffee ring */
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
     
     font-family: 'Special Elite', 'Courier New', Courier, monospace;
     color: #222;
