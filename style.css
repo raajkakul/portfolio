@@ -1,0 +1,115 @@
+/* General Setup */
+body {
+    background-color: #2c2c2c; /* Dark background to make the paper pop */
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    margin: 0;
+}
+
+/* The Paper Texture */
+.paper-container {
+    background-color: #f5e6ca; /* Base Cream Color */
+    /* This adds a subtle grainy texture and paper edges */
+    background-image: 
+        url("https://www.transparenttextures.com/patterns/parchment.png"), 
+        radial-gradient(circleAtCenter, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.05) 100%);
+    
+    width: 100%;
+    max-width: 850px;
+    min-height: 1100px;
+    padding: 60px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5), 5px 5px 15px rgba(0,0,0,0.3);
+    font-family: 'Special Elite', 'Courier New', Courier, monospace;
+    color: #222;
+    position: relative;
+    border: 1px solid #dcd0b8;
+}
+
+/* Stamps and Accents */
+.top-secret-stamp {
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    border: 4px solid #a31d1d;
+    color: #a31d1d;
+    padding: 5px 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transform: rotate(5deg);
+    opacity: 0.8;
+}
+
+.agency-title {
+    font-size: 1.8rem;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.document-sub {
+    text-align: center;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+
+.double-line {
+    border: none;
+    border-top: 3px double #333;
+    height: 0;
+}
+
+/* Metadata Section */
+.metadata {
+    display: flex;
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.photo-placeholder img {
+    width: 150px;
+    filter: grayscale(100%) contrast(120%);
+    border: 2px solid #333;
+}
+
+.barcode {
+    font-family: 'Libre Barcode 39', cursive; /* Optional: Use a barcode font */
+    font-size: 1.5rem;
+    margin-top: 5px;
+}
+
+/* Redaction Effect */
+.redacted {
+    background-color: #111;
+    color: #111;
+    cursor: help;
+    transition: color 0.4s ease;
+}
+
+.redacted:hover {
+    color: #33ff33; /* Glows green when hovered */
+}
+
+/* Typography Details */
+h2.section-title {
+    border-bottom: 2px solid #333;
+    padding-top: 20px;
+    font-size: 1.3rem;
+}
+
+.project {
+    margin-bottom: 20px;
+    border-left: 5px solid #333;
+    padding-left: 15px;
+}
+
+.file-link {
+    background-color: #333;
+    color: #f5e6ca;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+.file-link:hover {
+    background-color: #a31d1d;
+}
