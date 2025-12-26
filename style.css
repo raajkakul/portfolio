@@ -8,10 +8,12 @@ html, body {
 
 body {
     background-color: #f5e6ca; /* Base Cream */
-    /* FULL SCREEN PARCHMENT TEXTURE */
+    
+    /* UPDATED: Points to local file 'parchment.png' */
     background-image: 
         radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.12) 100%),
-        url("https://www.transparenttextures.com/patterns/parchment.png");
+        url("parchment.png");
+        
     background-attachment: fixed;
     font-family: 'Special Elite', 'Courier New', Courier, monospace;
     color: #222;
@@ -134,12 +136,24 @@ body {
     border: 10px solid #fff;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
     background: #fff;
+    position: relative;
 }
 
+/* High-tech security camera scanline effect */
 .profile-frame img {
     width: 100%;
     filter: grayscale(1) contrast(1.2);
     display: block;
+}
+
+.profile-frame::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
 }
 
 .barcode {
