@@ -1,62 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONFIDENTIAL // SUBJECT: [YOUR NAME]</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
-</head>
-<body>
+<div class="dossier-wrapper">
+    <div class="top-secret-stamp">CLASSIFIED</div>
+    
+    <header>
+        <h1 class="agency-title">CENTRAL INTELLIGENCE AGENCY</h1>
+        <p style="text-align:center;">OFFICE OF THE DIRECTOR | FIELD PERSONNEL FILE</p>
+        <hr style="border: 2px solid #222;">
+    </header>
 
-    <div class="paper-container">
-        <header class="dossier-header">
-            <div class="top-secret-stamp">TOP SECRET // NOFORN</div>
-            <div class="agency-title">CENTRAL INTELLIGENCE AGENCY</div>
-            <div class="document-sub">OFFICE OF CYBER INTELLIGENCE | PERSONNEL DIVISION</div>
-            <hr class="double-line">
-        </header>
-
-        <section class="metadata">
-            <div class="photo-placeholder">
-                <img src="your-photo.jpg" alt="Subject Photo" onerror="this.src='https://via.placeholder.com/150?text=REDACTED'">
-                <div class="barcode">|||| || | ||||| ||| |</div>
+    <div class="main-content">
+        <aside>
+            <div class="photo-placeholder" style="border: 10px solid white; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);">
+                <img src="your-image.jpg" style="width:100%; filter: grayscale(1) contrast(1.2);">
             </div>
-            <div class="stats">
-                <p><strong>SUBJECT:</strong> [YOUR NAME]</p>
-                <p><strong>CLEARANCE:</strong> LEVEL 5 (TS/SCI)</p>
-                <p><strong>SPECIALIZATION:</strong> <span class="redacted">Cybersecurity & Multimodal AI</span></p>
-                <p><strong>STATUS:</strong> ACTIVE</p>
+            <div class="stats" style="margin-top:20px;">
+                <p><strong>NAME:</strong> [REDACTED]</p>
+                <p><strong>ID:</strong> CIA-992-ALPHA</p>
+                <p><strong>CLEARANCE:</strong> TOP SECRET</p>
             </div>
-        </section>
+        </aside>
 
-        <section class="content-box">
-            <h2 class="section-title">EXECUTIVE SUMMARY</h2>
-            <p>Subject is a high-level developer with a focus on <span class="redacted">C++ Systems Programming</span> and Python-based data analysis. Proven track record in simulating complex environments, including bacterial warfare grids and UAV reconnaissance operations.</p>
-        </section>
-
-        <section class="content-box">
-            <h2 class="section-title">ACTIVE FIELD OPERATIONS (PROJECTS)</h2>
+        <main>
+            <h2>OPERATIONAL HISTORY</h2>
+            <p>Subject is a highly skilled developer specializing in <span class="redacted">Cybersecurity and AI Systems</span>. Expert-level proficiency in C++ and Python, with a history of successful deployments in simulated tactical environments.</p>
             
-            <div class="project">
-                <h3>PROJECT: SQUAT SWAT</h3>
-                <p><strong>OBJECTIVE:</strong> Detection and mitigation of typosquatting domains.</p>
-                <p><strong>INTEL:</strong> <a href="#">[VIEW REPO]</a></p>
-            </div>
-
-            <div class="project">
-                <h3>PROJECT: UAV-SIM</h3>
-                <p><strong>OBJECTIVE:</strong> Multi-threaded OpenGL simulation for aerial assets.</p>
-                <p><strong>INTEL:</strong> <a href="#">[VIEW REPO]</a></p>
-            </div>
-        </section>
-
-        <footer class="dossier-footer">
             <hr>
-            <p><strong>ACCESS FULL DOSSIER:</strong> <a href="resume.pdf" class="file-link">RESUME.PDF</a></p>
-            <div class="id-stamp">DOC ID: 8829-PRO-2025</div>
-        </footer>
+            
+            <h2>ACTIVE CASE FILES (PROJECTS)</h2>
+            <div class="project">
+                <h3>PROJECT SQUAT-SWAT</h3>
+                <p>Developing automated countermeasures against DNS-based domain squatting...</p>
+                <a href="#">[ACCESS REPO]</a>
+            </div>
+        </main>
     </div>
-
-</body>
-</html>
+</div>
