@@ -12,7 +12,18 @@
 <body>
 
     <div class="dossier-wrapper">
-        <div class="stamp top-secret">TOP SECRET // NOFORN</div>
+        
+        <div class="css-seal-watermark">
+            <div class="seal-outer">
+                <div class="seal-inner">
+                    <div class="seal-star">★</div>
+                    <div class="seal-text-top">UNITED STATES</div>
+                    <div class="seal-text-bottom">INTELLIGENCE</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stamp top-secret glitch" data-text="TOP SECRET // NOFORN">TOP SECRET // NOFORN</div>
         <div class="stamp classified">CLASSIFIED</div>
 
         <header class="dossier-header">
@@ -25,45 +36,46 @@
         <div class="main-content">
             <aside class="sidebar">
                 <div class="profile-frame">
-                    <img src="your-photo.jpg" alt="Subject Photo" onerror="this.src='https://via.placeholder.com/200x250?text=PHOTO+REDACTED'">
-                    <div class="barcode">YOURNAME2025</div>
+                    <img src="your-photo.jpg" alt="Subject Photo" onerror="this.src='https://via.placeholder.com/250x300?text=REDACTED'">
+                    <div class="barcode">OPERATIVE-[YOURNAME]</div>
                 </div>
                 
                 <div class="vitals">
                     <p><strong>SUBJECT:</strong> [YOUR NAME]</p>
-                    <p><strong>CITIZENSHIP:</strong> <span class="redacted">UNITED STATES</span></p>
                     <p><strong>CLEARANCE:</strong> LEVEL 5 (TS/SCI)</p>
-                    <p><strong>ASSIGNMENT:</strong> CYBER OPERATIONS</p>
+                    <p><strong>SPECIALIZATION:</strong> <span class="redacted">Cybersecurity & AI</span></p>
+                    <p><strong>STATUS:</strong> FIELD ACTIVE</p>
+                    <p><strong>LAST SEEN:</strong> <span class="redacted">WASHINGTON D.C.</span></p>
                 </div>
             </aside>
 
             <main class="report-body">
-                <section class="operational-summary">
+                <section>
                     <h2 class="section-heading">OPERATIONAL SUMMARY (ABOUT ME)</h2>
-                    <p>Subject is a highly specialized developer with a primary focus in <strong>Cybersecurity and Systems Programming</strong>. Known for expertise in <span class="redacted">low-level C++</span> and complex Python automation. Field experience includes the development of tactical simulations and defensive frameworks for network integrity.</p>
+                    <p>Subject is a highly specialized developer with an emphasis on **Cybersecurity and Systems Programming**. Expert-level proficiency in <span class="redacted">C++ and Python</span>, with specific experience in developing tactical simulations and identifying typosquatting vulnerabilities. Subject demonstrates high adaptability in containerized environments (Docker/K8s).</p>
                 </section>
 
-                <section class="active-ops">
+                <section>
                     <h2 class="section-heading">ACTIVE CASE FILES (PROJECTS)</h2>
                     
                     <div class="case-file">
                         <h3>CASE FILE 01: SQUAT SWAT</h3>
-                        <p><strong>OBJECTIVE:</strong> Automated identification of typosquatted domains to prevent phishing vectors.</p>
-                        <p><strong>INTEL:</strong> Built using Python; incorporates custom ranking frameworks for domain risk assessment.</p>
+                        <p><strong>OBJECTIVE:</strong> Automated detection of typosquatted domains to prevent phishing vectors.</p>
+                        <p><strong>TECH STACK:</strong> Python, Data Analysis frameworks.</p>
                         <a href="#" class="intel-link">[ACCESS REPOSITORY]</a>
                     </div>
 
                     <div class="case-file">
-                        <h3>CASE FILE 02: UAV RECON SIM</h3>
-                        <p><strong>OBJECTIVE:</strong> High-fidelity multi-threaded UAV simulation for aerial reconnaissance training.</p>
-                        <p><strong>INTEL:</strong> Developed in C++ with OpenGL. Features multi-threaded collision detection and realistic texture mapping.</p>
+                        <h3>CASE FILE 02: UAV RECON ENGINE</h3>
+                        <p><strong>OBJECTIVE:</strong> Multi-threaded OpenGL simulation for tactical aerial reconnaissance training.</p>
+                        <p><strong>TECH STACK:</strong> C++, OpenGL, Multi-threading.</p>
                         <a href="#" class="intel-link">[ACCESS REPOSITORY]</a>
                     </div>
                 </section>
 
-                <section class="credentials">
+                <section>
                     <h2 class="section-heading">PERSONNEL CREDENTIALS</h2>
-                    <p>For a full history of missions and technical training, access the personnel file below:</p>
+                    <p>To view the full history of field missions and technical training, download the primary personnel file:</p>
                     <a href="resume.pdf" class="resume-btn" target="_blank">DOWNLOAD RESUME.PDF</a>
                 </section>
             </main>
@@ -71,7 +83,7 @@
 
         <footer class="dossier-footer">
             <hr>
-            <p>WARNING: Unauthorized access to this document is punishable by up to 10 years in <span class="redacted">Federal Prison</span>.</p>
+            <p><strong>WARNING:</strong> PROPERTY OF THE US GOVERNMENT. UNAUTHORIZED ACCESS IS A <span class="redacted">FEDERAL OFFENSE</span> UNDER THE ESPIONAGE ACT.</p>
         </footer>
     </div>
 
