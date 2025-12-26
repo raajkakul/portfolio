@@ -9,12 +9,26 @@ html, body {
 body {
     background-color: #f5e6ca; /* Base Cream */
     
-    /* UPDATED: Points to local file 'parchment.png' */
     background-image: 
-        radial-gradient(circle, rgba(0,0,0,0) 50%, rgba(0,0,0,0.30) 100%),
+        /* LAYER 1: The Vignette (Shadowed Edges) */
+        radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.15) 100%),
+
+        /* LAYER 2: Large "Water Damage" Blotch (Bottom Right) */
+        radial-gradient(circle at 80% 80%, rgba(139, 115, 85, 0.1) 0%, rgba(0,0,0,0) 30%),
+
+        /* LAYER 3: Small "Coffee Stain" Ring (Top Left) */
+        radial-gradient(circle at 20% 15%, transparent 50%, rgba(101, 67, 33, 0.15) 52%, rgba(101, 67, 33, 0.1) 55%, transparent 60%),
+
+        /* LAYER 4: Age Spot/Foxing (Center Left) */
+        radial-gradient(circle at 10% 45%, rgba(139, 69, 19, 0.08) 0%, transparent 15%),
+
+        /* LAYER 5: Your Local Parchment Texture */
         url("parchment.png");
-        
+
     background-attachment: fixed;
+    background-size: cover, cover, 400px 400px, cover, auto; /* Controls the size of the coffee ring */
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+    
     font-family: 'Special Elite', 'Courier New', Courier, monospace;
     color: #222;
     line-height: 1.6;
