@@ -180,7 +180,7 @@ body {
 }
 
 /* 8. CASE FILES & BUTTONS */
-.section-heading { border-bottom: 2px solid #222; margin-top: 40px; }
+.section-heading { border-bottom: 2px solid #222; margin-top: 40px; color: #a31d1d; }
 .case-file {
     margin: 25px 0;
     padding: 20px;
