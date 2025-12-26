@@ -16,9 +16,6 @@ body {
         /* LAYER 2: Large "Water Damage" Blotch (Bottom Right) */
         radial-gradient(circle at 80% 80%, rgba(139, 115, 85, 0.1) 0%, rgba(0,0,0,0) 30%),
 
-        /* LAYER 3: Small "Coffee Stain" Ring (Top Left) */
-        radial-gradient(circle at 20% 15%, transparent 50%, rgba(101, 67, 33, 0.15) 52%, rgba(101, 67, 33, 0.1) 55%, transparent 60%),
-
         /* LAYER 4: Age Spot/Foxing (Center Left) */
         radial-gradient(circle at 10% 45%, rgba(139, 69, 19, 0.08) 0%, transparent 15%),
 
