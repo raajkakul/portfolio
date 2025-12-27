@@ -389,3 +389,32 @@ body {
     font-size: 0.85rem;
     margin-bottom: 15px;
 }
+
+body::before {
+    content: "STRICTLY CONFIDENTIAL   STRICTLY CONFIDENTIAL   STRICTLY CONFIDENTIAL";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%; /* Extra width to cover the page during rotation */
+    height: 200%;
+    
+    /* Aesthetics of the text */
+    font-family: 'Special Elite', 'Courier New', monospace;
+    font-size: 5rem;
+    color: rgba(163, 29, 29, 0.04); /* Very faint red to not interfere with readability */
+    
+    /* The diagonal rotation */
+    transform: rotate(-45deg);
+    transform-origin: top left;
+    
+    /* Repeating the text across the background */
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+    
+    pointer-events: none; /* Allows you to click links through the watermark */
+    z-index: -2; /* Sits behind the paper texture and text */
+    white-space: nowrap;
+    overflow: hidden;
+}
