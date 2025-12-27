@@ -265,12 +265,11 @@ body {
     box-sizing: border-box;   /* Includes the border in width calculations */
 
     /* Keep your existing styles below */
-    background: rgba(0, 0, 0, 0.05);
-    border-left: 4px solid #222;
+    background: rgba(0, 0, 0, 0);
     color: #222;
     padding: 10px 15px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     z-index: 10;
     pointer-events: none;
     text-transform: uppercase;
