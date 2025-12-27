@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="surveillance-monitor">
+    <div class="monitor-line">SYSTEM TIME: <span id="live-clock">00:00:00</span></div>
+    <div class="monitor-line">SECURITY: <span class="status-blink">ENCRYPTED</span></div>
+    <div class="monitor-line">ENCRYPTION: AES-256</div>
+    <div class="monitor-line">TRACING: <span id="trace-status">ACTIVE</span></div>
+    </div>
 
     <div class="dossier-wrapper">
         
@@ -86,6 +92,30 @@
         </footer>
     </div>
 <script>
+    function updateMonitor() {
+    const clockElement = document.getElementById('live-clock');
+    const traceElement = document.getElementById('trace-status');
+    
+    // Update Clock
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('en-US', { 
+        hour12: false, 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit' 
+    });
+    clockElement.innerText = timeString;
+
+    // Randomize "Tracing" status for a 'TV-show' feel
+    const statuses = ["ACTIVE", "STANDBY", "RE-ROUTING", "SECURE"];
+    if (Math.random() > 0.95) { // 5% chance to change status every second
+        traceElement.innerText = statuses[Math.floor(Math.random() * statuses.length)];
+    }
+}
+
+// Start the monitor loop
+setInterval(updateMonitor, 1000);
+updateMonitor(); // Run immediately on load
 const chars = "!@#$%^&*()_+-=[]{}|;:,.<>?/0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 document.querySelectorAll('.decrypt-me').forEach(element => {
@@ -120,13 +150,14 @@ document.querySelectorAll('.decrypt-me').forEach(element => {
                 event.target.innerText = originalText;
             }
 
-            iteration += 1 / 3; 
+            iteration += 1; 
         }, 30);
     };
 });
 </script>
 </body>
 </html>
+
 
 
 
