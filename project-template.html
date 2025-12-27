@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASE FILE: OPERATION [PROJECT NAME]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Barcode+39&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> </head>
+<body>
+
+    <div class="dossier-wrapper">
+        <div id="surveillance-monitor">
+            <div class="monitor-line">SYSTEM TIME: <span id="live-clock">00:00:00</span></div>
+            <div class="monitor-line">SECURITY: <span class="status-blink">ENCRYPTED</span></div>
+        </div>
+
+        <div class="stamp top-secret glitch" data-text="CLASSIFIED">CLASSIFIED</div>
+
+        <header class="dossier-header">
+            <a href="index.html" class="intel-link" style="float: left;">< RETURN TO INDEX</a>
+            <h1 class="agency-title decrypt-me">DETAILED CASE REPORT</h1>
+            <p class="agency-subtitle">OPERATION: [PROJECT NAME]</p>
+            <hr class="double-line">
+        </header>
+
+        <main class="report-body">
+            <section class="evidence-section">
+                <h2 class="section-heading">VIDEO EVIDENCE // RECONNAISSANCE</h2>
+                <div class="video-container" style="border: 2px solid #222; background: #000; margin: 20px 0;">
+                    <video width="100%" controls style="filter: grayscale(1) contrast(1.2);">
+                        <source src="project-demo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
+
+            <section class="evidence-section">
+                <h2 class="section-heading">TECHNICAL SCHEMATICS & SCREENSHOTS</h2>
+                <div class="image-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <img src="shot1.jpg" style="width:100%; border: 5px solid white; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); filter: grayscale(1);">
+                    <img src="shot2.jpg" style="width:100%; border: 5px solid white; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); filter: grayscale(1);">
+                </div>
+            </section>
+
+            <section class="debrief">
+                <h2 class="section-heading">MISSION DEBRIEF (TECHNICAL SPECS)</h2>
+                <p>This mission involved the deployment of <span class="redacted">multi-threaded algorithms</span> to solve [Problem]. The architecture relies on [Technology], ensuring high performance under [Condition].</p>
+                
+                <a href="https://github.com/yourusername/project" class="resume-btn">VIEW SOURCE CODE ON EXTERNAL TERMINAL (GITHUB)</a>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script> 
+</body>
+</html>
