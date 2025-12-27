@@ -308,76 +308,84 @@ body {
 }
 
 /* FOLDER STACK CONTAINER */
+/* FOLDER STACK */
 .folder-stack {
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
-    gap: 5px; /* Slight gap between "folders" */
+    gap: 15px;
+    margin-top: 20px;
 }
 
-/* THE INDIVIDUAL FOLDER */
 .case-file-folder {
+    position: relative;
     border: 1px solid #8b7355;
-    background: rgba(210, 180, 140, 0.1); /* Faint Manila folder tint */
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(210, 180, 140, 0.15);
+    height: 250px; /* Fixed height for static look */
     overflow: hidden;
-    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.folder-tab {
+    background: #d2b48c;
+    color: #333;
+    padding: 8px 15px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #8b7355;
+    z-index: 5;
     position: relative;
 }
 
-/* THE TAB (The visible title) */
-.folder-tab {
-    background: #d2b48c; /* Manila color */
-    color: #333;
-    padding: 10px 20px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-    border-bottom: 1px solid #8b7355;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.folder-tab::after {
-    content: "[ + ]"; /* Visual hint to expand */
-    font-family: monospace;
-    font-size: 0.7rem;
-}
-
-/* THE HIDDEN CONTENT */
-.folder-content {
-    max-height: 0; /* Hidden by default */
-    opacity: 0;
-    padding: 0 20px;
-    transition: all 0.5s ease;
-    background-image: url("parchment.png"); /* Texture inside the folder */
-}
-
-/* HOVER STATE (The Reveal) */
-.case-file-folder:hover {
-    background: rgba(210, 180, 140, 0.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
-}
-
-.case-file-folder:hover .folder-content {
-    max-height: 500px; /* Expands to fit content */
-    opacity: 1;
+/* THE REVEAL CONTAINER */
+.folder-reveal-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Details on left, Image on right */
+    gap: 20px;
     padding: 20px;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(10px);
+    transition: all 0.4s ease;
 }
 
-.case-file-folder:hover .folder-tab {
-    background: #c3a67d; /* Darkens slightly when open */
+/* Show details on hover */
+.case-file-folder:hover .folder-reveal-container {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.case-file-folder:hover .folder-tab::after {
-    content: "[ - ]";
+.case-file-folder:hover {
+    background: rgba(210, 180, 140, 0.3);
 }
 
-/* Typography inside folder */
-.folder-content h3 {
+/* IMAGE PLACEHOLDER STYLE */
+.project-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-box {
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #8b7355;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8b7355;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    filter: grayscale(1);
+}
+
+/* Typographic tweaks */
+.project-details h3 {
     margin-top: 0;
     color: #a31d1d;
-    font-size: 1.1rem;
+    font-size: 1rem;
+}
+
+.project-details p {
+    font-size: 0.85rem;
+    margin-bottom: 15px;
 }
