@@ -259,26 +259,30 @@ body {
     top: 20px;
     left: 20px;
     
-    /* ADD THESE THREE LINES */
-    display: inline-block;    /* Shrinks the box to fit the text content */
-    width: auto;              /* Ensures it doesn't try to fill the screen */
-    box-sizing: border-box;   /* Includes the border in width calculations */
+    /* THE FIXES */
+    display: inline-flex;     /* Better than inline-block for vertical alignment */
+    flex-direction: column;   /* Stacks the lines of text */
+    width: fit-content;       /* Strictly fits the width of the text */
+    height: auto;             /* Ensures it doesn't stretch vertically */
+    max-width: 200px;         /* Prevents it from ever getting too wide */
 
-    /* Keep your existing styles below */
-    background: rgba(0, 0, 0, 0);
+    /* Aesthetics */
+    background: rgba(0, 0, 0, 0.05);
+    border-left: 3px solid #222; /* Changed from green to dark to match your image theme */
     color: #222;
-    padding: 10px 15px;
+    padding: 8px 12px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.8rem;
-    z-index: 10;
+    z-index: 100;
     pointer-events: none;
     text-transform: uppercase;
+    line-height: 1.2;         /* Tightens the vertical spacing */
 }
 
+/* Ensure individual lines don't force extra height */
 .monitor-line {
-    margin-bottom: 3px;
-    letter-spacing: 1px;
-    font-weight: bold;
+    margin: 2px 0;
+    white-space: nowrap;
 }
 
 /* Security status now looks like a red ink warning */
