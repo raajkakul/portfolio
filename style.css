@@ -176,12 +176,6 @@ body {
     padding: 10px 0;
 }
 
-.barcode-text {
-    font-size: 1.8rem;
-    text-align: center;
-    padding: 10px 0;
-}
-
 /* 7. REDACTION */
 .redacted {
     background: #111;
