@@ -277,7 +277,6 @@ body {
 /* The blinking security light */
 .status-blink {
     color: #ff3333; /* Alert red */
-    animation: blink-animation 1.5s steps(2, start) infinite;
 }
 
 @keyframes blink-animation {
