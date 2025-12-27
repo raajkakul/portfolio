@@ -94,6 +94,12 @@ document.querySelectorAll('.decrypt-me').forEach(element => {
     let interval = null;
 
     element.onmouseenter = event => {
+        // CHECK: If this element has already been decrypted, stop here.
+        if (element.getAttribute('data-decrypted') === 'true') return;
+
+        // MARK: Set the flag so it never runs again for this session
+        element.setAttribute('data-decrypted', 'true');
+
         iteration = 0;
         clearInterval(interval);
 
@@ -102,7 +108,7 @@ document.querySelectorAll('.decrypt-me').forEach(element => {
                 .split("")
                 .map((char, index) => {
                     if (index < iteration) {
-                        return originalText[index]; 
+                        return originalText[index];
                     }
                     return chars[Math.floor(Math.random() * chars.length)];
                 })
@@ -110,16 +116,18 @@ document.querySelectorAll('.decrypt-me').forEach(element => {
 
             if (iteration >= originalText.length) {
                 clearInterval(interval);
+                // Ensure the final text is exactly the original
+                event.target.innerText = originalText;
             }
 
-            // Speed of decryption: Increase iteration every 3 frames
-            iteration += 1; 
-        }, 30); // Runs every 30 milliseconds
+            iteration += 1 / 3; 
+        }, 30);
     };
 });
 </script>
 </body>
 </html>
+
 
 
 
