@@ -267,14 +267,13 @@ body {
     max-width: 200px;         /* Prevents it from ever getting too wide */
 
     /* Aesthetics */
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0);
     border-left: 3px solid #222; /* Changed from green to dark to match your image theme */
-    color: #222;
     padding: 8px 12px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.0rem;
+    font-size: 0.8rem;
     z-index: 100;
-    pointer-events: none;
+    pointer-events: none;    
     text-transform: uppercase;
     line-height: 1.2;         /* Tightens the vertical spacing */
 }
