@@ -298,3 +298,78 @@ body {
     .main-content { grid-template-columns: 1fr; }
     .top-secret { position: relative; top: 0; right: 0; margin-bottom: 20px; width: fit-content; }
 }
+
+/* FOLDER STACK CONTAINER */
+.folder-stack {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Slight gap between "folders" */
+}
+
+/* THE INDIVIDUAL FOLDER */
+.case-file-folder {
+    border: 1px solid #8b7355;
+    background: rgba(210, 180, 140, 0.1); /* Faint Manila folder tint */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+/* THE TAB (The visible title) */
+.folder-tab {
+    background: #d2b48c; /* Manila color */
+    color: #333;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #8b7355;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.folder-tab::after {
+    content: "[ + ]"; /* Visual hint to expand */
+    font-family: monospace;
+    font-size: 0.7rem;
+}
+
+/* THE HIDDEN CONTENT */
+.folder-content {
+    max-height: 0; /* Hidden by default */
+    opacity: 0;
+    padding: 0 20px;
+    transition: all 0.5s ease;
+    background-image: url("parchment.png"); /* Texture inside the folder */
+}
+
+/* HOVER STATE (The Reveal) */
+.case-file-folder:hover {
+    background: rgba(210, 180, 140, 0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.case-file-folder:hover .folder-content {
+    max-height: 500px; /* Expands to fit content */
+    opacity: 1;
+    padding: 20px;
+}
+
+.case-file-folder:hover .folder-tab {
+    background: #c3a67d; /* Darkens slightly when open */
+}
+
+.case-file-folder:hover .folder-tab::after {
+    content: "[ - ]";
+}
+
+/* Typography inside folder */
+.folder-content h3 {
+    margin-top: 0;
+    color: #a31d1d;
+    font-size: 1.1rem;
+}
