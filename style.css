@@ -255,33 +255,32 @@ body {
 }
 
 #surveillance-monitor {
-    position: fixed;
-    top: 20px;          /* Moved from bottom to top */
-    right: 20px;
-    background: rgba(0, 0, 0, 0.75); /* Dark but slightly translucent */
-    backdrop-filter: blur(4px);      /* Blurs the paper behind it */
-    color: #33ff33;                  /* Terminal green */
-    padding: 12px 18px;
+    position: absolute;  /* Changed from fixed to absolute */
+    top: 20px;
+    left: 20px;          /* Anchored to the top-left */
+    background: rgba(0, 0, 0, 0.05); /* Faint dark background */
+    border-left: 4px solid #222;    /* Dark border to match paper ink */
+    color: #222;                    /* Dark text to look printed */
+    padding: 10px 15px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.7rem;
-    border-right: 3px solid #33ff33; /* Moved border to the right for balance */
-    z-index: 1000;                   /* Keeps it above everything */
+    font-size: 0.65rem;
+    z-index: 10;
     pointer-events: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     text-transform: uppercase;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .monitor-line {
-    margin-bottom: 4px;
-    letter-spacing: 1.5px;
-    white-space: nowrap; /* Keeps text on one line */
+    margin-bottom: 3px;
+    letter-spacing: 1px;
+    font-weight: bold;
 }
 
-/* Red alert for Security Status */
+/* Security status now looks like a red ink warning */
 .status-blink {
-    color: #ff4d4d;
-    font-weight: bold;
-    animation: blink-animation 1s steps(2, start) infinite;
+    color: #a31d1d; 
+    animation: blink-animation 1.5s steps(2, start) infinite;
 }
 
 @keyframes blink-animation {
