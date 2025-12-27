@@ -216,6 +216,16 @@ body {
     font-weight: bold;
 }
 
+.decrypt-me {
+    transition: color 0.2s ease;
+    cursor: default;
+}
+
+.decrypt-me:hover {
+    color: #a31d1d; /* Matches your stamps */
+    text-shadow: 0 0 8px rgba(163, 29, 29, 0.4);
+}
+
 .resume-btn:hover { background: #a31d1d; }
 
 /* 9. RESPONSIVE */
