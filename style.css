@@ -423,3 +423,17 @@ body::before {
     overflow: hidden;
     user-select: none;
 }
+
+/* Makes images look like printed surveillance shots */
+.image-grid img, video {
+    filter: grayscale(1) contrast(1.1) brightness(0.9);
+    transition: filter 0.3s ease;
+}
+
+.image-grid img:hover, video:hover {
+    filter: none; /* Reveals color on hover */
+}
+
+.evidence-section {
+    margin-bottom: 50px;
+}
