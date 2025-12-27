@@ -228,6 +228,43 @@ body {
 
 .resume-btn:hover { background: #a31d1d; }
 
+#surveillance-monitor {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+    color: #33ff33; /* Terminal green */
+    padding: 15px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    border-left: 3px solid #33ff33;
+    z-index: 1000;
+    pointer-events: none; /* Allows you to click things 'behind' it */
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.monitor-line {
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+/* The blinking security light */
+.status-blink {
+    color: #ff3333; /* Alert red */
+    animation: blink-animation 1.5s steps(2, start) infinite;
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
+
+/* Media query to hide on small mobile screens to prevent clutter */
+@media (max-width: 600px) {
+    #surveillance-monitor { display: none; }
+}
+
 /* 9. RESPONSIVE */
 @media (max-width: 850px) {
     .main-content { grid-template-columns: 1fr; }
