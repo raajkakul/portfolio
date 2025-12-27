@@ -342,7 +342,7 @@ body {
     grid-template-columns: 1.5fr 1fr; /* Details on left, Image on right */
     gap: 20px;
     padding: 20px;
-    opacity: 0; /* Hidden by default */
+    opacity: 0.5; /* Hidden by default */
     transform: translateY(10px);
     transition: all 0.4s ease;
 }
