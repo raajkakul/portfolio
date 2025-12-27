@@ -27,7 +27,7 @@
         <div class="stamp classified">CLASSIFIED</div>
 
         <header class="dossier-header">
-            <h1 class="agency-title">INTELLIGENCE AGENCY</h1>
+            <h1 class="agency-title decrypt-me">INTELLIGENCE AGENCY</h1>
             <p class="agency-subtitle">OFFICE OF THE DIRECTOR | PERSONNEL RECORDS DIVISION</p>
             <div class="file-number">FILE REF: CIA-772-B-991</div>
             <hr class="double-line">
@@ -50,12 +50,12 @@
 
             <main class="report-body">
                 <section>
-                    <h2 class="section-heading">OPERATIONAL SUMMARY (ABOUT ME)</h2>
+                    <h2 class="section-heading decrypt-me">OPERATIONAL SUMMARY (ABOUT ME)</h2>
                     <p>Subject is a highly specialized developer with an emphasis on <strong>Cybersecurity and AI</strong>. Expert-level proficiency in <span class="redacted">C++ and Python</span>, with specific experience in developing tactical simulations and identifying typosquatting vulnerabilities. Subject demonstrates high adaptability in containerized environments (Docker/K8s).</p>
                 </section>
 
                 <section>
-                    <h2 class="section-heading">ACTIVE CASE FILES (PROJECTS)</h2>
+                    <h2 class="section-heading decrypt-me">ACTIVE CASE FILES (PROJECTS)</h2>
                     
                     <div class="case-file">
                         <h3>CASE FILE 01: SQUAT SWAT</h3>
@@ -85,8 +85,41 @@
             <p><strong>WARNING:</strong> UNAUTHORIZED ACCESS IS A <span class="redacted">FEDERAL OFFENSE</span> UNDER THE ESPIONAGE ACT.</p>
         </footer>
     </div>
+<script>
+const chars = "!@#$%^&*()_+-=[]{}|;:,.<>?/0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+document.querySelectorAll('.decrypt-me').forEach(element => {
+    const originalText = element.innerText;
+    let iteration = 0;
+    let interval = null;
+
+    element.onmouseenter = event => {
+        iteration = 0;
+        clearInterval(interval);
+
+        interval = setInterval(() => {
+            event.target.innerText = event.target.innerText
+                .split("")
+                .map((char, index) => {
+                    if (index < iteration) {
+                        return originalText[index]; 
+                    }
+                    return chars[Math.floor(Math.random() * chars.length)];
+                })
+                .join("");
+
+            if (iteration >= originalText.length) {
+                clearInterval(interval);
+            }
+
+            // Speed of decryption: Increase iteration every 3 frames
+            iteration += 1 / 3; 
+        }, 30); // Runs every 30 milliseconds
+    };
+});
+</script>
 </body>
 </html>
+
 
 
