@@ -263,7 +263,7 @@ body {
     display: inline-flex;     /* Better than inline-block for vertical alignment */
     flex-direction: column;   /* Stacks the lines of text */
     width: fit-content;       /* Strictly fits the width of the text */
-    height: auto;             /* Ensures it doesn't stretch vertically */
+    height: fit-content;             /* Ensures it doesn't stretch vertically */
     max-width: 200px;         /* Prevents it from ever getting too wide */
 
     /* Aesthetics */
@@ -272,7 +272,7 @@ body {
     color: #222;
     padding: 8px 12px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.8rem;
+    font-size: 1.0rem;
     z-index: 100;
     pointer-events: none;
     text-transform: uppercase;
