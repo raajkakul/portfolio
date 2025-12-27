@@ -256,33 +256,36 @@ body {
 
 #surveillance-monitor {
     position: fixed;
-    bottom: 20px;
+    top: 20px;          /* Moved from bottom to top */
     right: 20px;
-    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-    color: #33ff33; /* Terminal green */
-    padding: 15px;
+    background: rgba(0, 0, 0, 0.75); /* Dark but slightly translucent */
+    backdrop-filter: blur(4px);      /* Blurs the paper behind it */
+    color: #33ff33;                  /* Terminal green */
+    padding: 12px 18px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.75rem;
-    border-left: 3px solid #33ff33;
-    z-index: 1000;
-    pointer-events: none; /* Allows you to click things 'behind' it */
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    font-size: 0.7rem;
+    border-right: 3px solid #33ff33; /* Moved border to the right for balance */
+    z-index: 1000;                   /* Keeps it above everything */
+    pointer-events: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
 }
 
 .monitor-line {
-    margin-bottom: 5px;
-    letter-spacing: 1px;
+    margin-bottom: 4px;
+    letter-spacing: 1.5px;
+    white-space: nowrap; /* Keeps text on one line */
 }
 
-/* The blinking security light */
+/* Red alert for Security Status */
 .status-blink {
-    color: #ff3333; /* Alert red */
+    color: #ff4d4d;
+    font-weight: bold;
+    animation: blink-animation 1s steps(2, start) infinite;
 }
 
 @keyframes blink-animation {
-    to {
-        visibility: hidden;
-    }
+    to { visibility: hidden; }
 }
 
 /* Media query to hide on small mobile screens to prevent clutter */
@@ -290,16 +293,6 @@ body {
     #surveillance-monitor { display: none; }
 }
 
-@keyframes blink-animation {
-    to {
-        visibility: hidden;
-    }
-}
-
-/* Media query to hide on small mobile screens to prevent clutter */
-@media (max-width: 600px) {
-    #surveillance-monitor { display: none; }
-}
 
 /* 9. RESPONSIVE */
 @media (max-width: 850px) {
