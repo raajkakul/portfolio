@@ -228,21 +228,6 @@ body {
 
 .resume-btn:hover { background: #a31d1d; }
 
-#surveillance-monitor {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
-    color: #33ff33; /* Terminal green */
-    padding: 15px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.75rem;
-    border-left: 3px solid #33ff33;
-    z-index: 1000;
-    pointer-events: none; /* Allows you to click things 'behind' it */
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
-}
-
 .monitor-line {
     margin-bottom: 5px;
     letter-spacing: 1px;
@@ -267,8 +252,8 @@ body {
     max-width: 200px;         /* Prevents it from ever getting too wide */
 
     /* Aesthetics */
-    background: rgba(0, 0, 0, 0.05);
-    border-left: none; /* Changed from green to dark to match your image theme */
+    background: rgba(0, 0, 0, 0);
+    border-left: 3px solid #222;; /* Changed from green to dark to match your image theme */
     color: #222;
     padding: 8px 12px;
     font-family: 'Courier New', Courier, monospace;
