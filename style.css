@@ -391,30 +391,35 @@ body {
 }
 
 body::before {
-    content: "STRICTLY CONFIDENTIAL   STRICTLY CONFIDENTIAL   STRICTLY CONFIDENTIAL";
+    /* Add more repetitions here to ensure it fills the grid */
+    content: "STRICTLY CONFIDENTIAL   STRICTLY CONFIDENTIAL   STRICTLY CONFIDENTIAL   STRICTLY CONFIDENTIAL   STRICTLY CONFIDENTIAL";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 200%; /* Extra width to cover the page during rotation */
+    top: -50%; /* Start higher to cover corners during rotation */
+    left: -50%; /* Start further left */
+    width: 200%; 
     height: 200%;
     
-    /* Aesthetics of the text */
     font-family: 'Special Elite', 'Courier New', monospace;
-    font-size: 5rem;
-    color: rgba(163, 29, 29, 0.04); /* Very faint red to not interfere with readability */
+    font-size: 4rem;
+    color: rgba(163, 29, 29, 0.04);
     
-    /* The diagonal rotation */
     transform: rotate(-45deg);
-    transform-origin: top left;
     
-    /* Repeating the text across the background */
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: space-around;
+    /* THE FIX: Grid and Text Shadow Repetition */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 100px;
     
-    pointer-events: none; /* Allows you to click links through the watermark */
-    z-index: -2; /* Sits behind the paper texture and text */
+    /* This replicates the text multiple times vertically */
+    text-shadow: 
+        0 400px rgba(163, 29, 29, 0.04),
+        0 800px rgba(163, 29, 29, 0.04),
+        0 1200px rgba(163, 29, 29, 0.04),
+        0 1600px rgba(163, 29, 29, 0.04);
+        
+    pointer-events: none;
+    z-index: -2;
     white-space: nowrap;
     overflow: hidden;
+    user-select: none;
 }
