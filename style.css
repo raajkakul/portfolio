@@ -267,8 +267,8 @@ body {
     max-width: 200px;         /* Prevents it from ever getting too wide */
 
     /* Aesthetics */
-    background: rgba(0, 0, 0, 0);
-    border-left: 3px solid #222; /* Changed from green to dark to match your image theme */
+    background: rgba(0, 0, 0, 0.05);
+    border-left: none; /* Changed from green to dark to match your image theme */
     color: #222;
     padding: 8px 12px;
     font-family: 'Courier New', Courier, monospace;
