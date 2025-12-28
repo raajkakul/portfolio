@@ -422,3 +422,50 @@ body::before {
 .evidence-section {
     margin-bottom: 50px;
 }
+
+/* SKILLS LAYOUT */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.skill-category {
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.category-label {
+    font-size: 0.9rem;
+    color: #a31d1d; /* Red 'Internal' Color */
+    border-bottom: 1px solid #222;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+
+.skill-item {
+    font-family: 'Special Elite', 'Courier New', monospace;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.skill-level {
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #222;
+}
+
+/* FOOTER STATUS */
+.official-footer {
+    margin-top: 25px;
+    padding: 10px;
+    border-top: 2px double #222;
+    text-align: right;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
