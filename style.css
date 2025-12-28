@@ -469,3 +469,60 @@ body::before {
     font-weight: bold;
     font-size: 0.8rem;
 }
+
+/* SIGNATURE SECTION */
+.signature-container {
+    margin-top: 60px;
+    display: flex;
+    justify-content: flex-end; /* Aligns to bottom right */
+    padding: 20px;
+}
+
+.signature-line {
+    width: 350px;
+    border-top: 1px solid #222;
+    padding-top: 10px;
+    position: relative;
+}
+
+.signature-label {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    margin: 0 0 10px 0;
+}
+
+.signature-wrapper {
+    position: relative;
+    height: 80px;
+}
+
+.handwritten-signature {
+    font-family: 'Beth Ellen', cursive;
+    font-size: 1.4rem;
+    color: rgba(20, 20, 100, 0.85); /* Blue fountain pen ink color */
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    transform: rotate(-2deg); /* Slightly tilted handwriting */
+}
+
+/* THE 'CERTIFIED' STAMP BEHIND THE SIGNATURE */
+.certified-stamp {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    border: 3px solid rgba(163, 29, 29, 0.15); /* Faint Red Rubber Stamp */
+    color: rgba(163, 29, 29, 0.15);
+    padding: 5px 10px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    transform: rotate(15deg);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.signatory-info {
+    font-size: 0.7rem;
+    line-height: 1.4;
+    margin-top: 5px;
+}
