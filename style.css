@@ -498,12 +498,12 @@ body::before {
 
 .handwritten-signature {
     font-family: 'Beth Ellen', cursive;
-    font-size: 1.4rem;
+    font-size: 2.0rem;
     color: rgba(20, 20, 100, 0.85); /* Blue fountain pen ink color */
     position: absolute;
     top: -10px;
     left: 20px;
-    transform: rotate(-2deg); /* Slightly tilted handwriting */
+    transform: rotate(-10deg); /* Slightly tilted handwriting */
 }
 
 /* THE 'CERTIFIED' STAMP BEHIND THE SIGNATURE */
@@ -515,8 +515,8 @@ body::before {
     color: rgba(163, 29, 29, 0.15);
     padding: 5px 10px;
     font-weight: bold;
-    font-size: 0.8rem;
-    transform: rotate(15deg);
+    font-size: 1.0rem;
+    transform: rotate(-15deg);
     pointer-events: none;
     z-index: 1;
 }
