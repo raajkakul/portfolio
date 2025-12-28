@@ -516,7 +516,7 @@ body::before {
     padding: 5px 10px;
     font-weight: bold;
     font-size: 1.0rem;
-    transform: rotate(-15deg);
+    transform: rotate(15deg);
     pointer-events: none;
     z-index: 1;
 }
