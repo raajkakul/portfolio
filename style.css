@@ -550,63 +550,61 @@ body::before {
     align-items: center;
     border-radius: 50%;
     
-    /* Frame also uses the texture for consistency */
-    background-image: url('assets/brass-texture.jpg');
-    background-size: cover;
-    background-position: center;
-    
-    border: 3px solid #8b6914;
-    box-shadow: 
-        inset 2px 2px 5px rgba(255, 255, 255, 0.4), 
-        inset -2px -2px 5px rgba(0, 0, 0, 0.5), 
-        4px 4px 10px rgba(0, 0, 0, 0.4);
-    position: relative;
-}
-
-/* THE TEXTURED ICON */
-/* THE TEXTURED ICON */
-.badge-icon {
-    font-size: 2.8rem;
-    /* width: 100%;
-    height: 100%; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    /* Apply the brass texture */
+    /* Using your brass texture for the physical metal disc */
     background-image: url('texture.png');
-    
-    /* Change cover to a percentage or fixed px for more detail */
-    background-size: 80px 80px; 
-    background-repeat: repeat;
+    background-size: 150px 150px; /* Tiling it slightly smaller for detail */
     background-position: center;
-
-    /* THE MAGIC: Masking */
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    /* Extra depth: Shadow makes the 'metal' icon look embossed */
-    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.6));
+    
+    /* 3D Gold/Bronze Border */
+    border: 3px solid #8b6914;
+    
+    /* Stronger shadows to make it look like a physical object on the paper */
+    box-shadow: 
+        inset 2px 2px 4px rgba(255, 255, 255, 0.5), /* Top Highlight */
+        inset -2px -2px 4px rgba(0, 0, 0, 0.4),    /* Bottom Shadow */
+        4px 6px 10px rgba(0, 0, 0, 0.3);           /* Shadow on Paper */
+    
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* ADD A SHINE OVERLAY */
-/* .badge-frame::after {
+/* THE ENGRAVED ICON EFFECT */
+.badge-icon {
+    font-size: 2.5rem; /* Slightly smaller to fit comfortably */
+    
+    /* Dark bronze/black color for the 'bottom' of the engraving */
+    color: #2b1d0e; 
+    
+    /* THE TRICK: This makes it look carved into the brass disc */
+    text-shadow: 
+        0px 1px 1px rgba(255, 255, 255, 0.4), /* Light hitting the bottom edge */
+        -1px -1px 2px rgba(0, 0, 0, 0.7);      /* Deep shadow at the top edge */
+    
+    /* Remove masking filters that were causing the 'line' issue */
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    -webkit-text-fill-color: initial;
+}
+
+.badge-frame:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 10px 15px rgba(0,0,0,0.4);
+}
+
+.badge-frame::after {
     content: "";
     position: absolute;
     top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, 
-        transparent 45%, 
-        rgba(255, 255, 255, 0.1) 50%, 
-        transparent 55%);
+    left: -150%;
+    width: 50px;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
     pointer-events: none;
-} */
+    transition: all 0.6s ease;
+}
 
-/* Add a subtle hover effect to make them feel tactile */
-.badge-frame:hover {
-    transform: translateY(-5px);
-    box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
+.badge-frame:hover::after {
+    left: 150%; /* Slides the shine across the medal on hover */
 }
