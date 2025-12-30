@@ -588,7 +588,7 @@ body::before {
 }
 
 /* ADD A SHINE OVERLAY */
-.badge-frame::after {
+/* .badge-frame::after {
     content: "";
     position: absolute;
     top: -50%;
@@ -600,7 +600,7 @@ body::before {
         rgba(255, 255, 255, 0.1) 50%, 
         transparent 55%);
     pointer-events: none;
-}
+} */
 
 /* Add a subtle hover effect to make them feel tactile */
 .badge-frame:hover {
