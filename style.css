@@ -564,27 +564,30 @@ body::before {
 }
 
 /* THE TEXTURED ICON */
+/* THE TEXTURED ICON */
 .badge-icon {
     font-size: 2.8rem;
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
     display: flex;
     justify-content: center;
     align-items: center;
 
-    /* Apply the brass texture to the icon itself */
-    background-image: url('texture.png');
-    background-size: 50%;
+    /* Apply the brass texture */
+    background-image: url('assets/brass-texture.jpg');
+    
+    /* Change cover to a percentage or fixed px for more detail */
+    background-size: 80px 80px; 
+    background-repeat: repeat;
     background-position: center;
 
     /* THE MAGIC: Masking */
-    /* This makes the background image only visible through the shape of the icon */
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    /* Add a shadow to make the 'metal' icon pop against the frame */
-    filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5));
+    /* Extra depth: Shadow makes the 'metal' icon look embossed */
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.6));
 }
 
 /* ADD A SHINE OVERLAY */
