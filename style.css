@@ -574,7 +574,7 @@ body::before {
     align-items: center;
 
     /* Apply the brass texture */
-    background-image: url('assets/brass-texture.jpg');
+    background-image: url('texture.png');
     
     /* Change cover to a percentage or fixed px for more detail */
     background-size: 80px 80px; 
