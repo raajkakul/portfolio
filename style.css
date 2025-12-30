@@ -526,3 +526,56 @@ body::before {
     line-height: 1.4;
     margin-top: 5px;
 }
+
+.insignia-grid {
+    display: grid;
+    /* Creates a responsive grid of centered items */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    justify-items: center; /* Centers items horizontally in their grid cells */
+}
+
+.insignia-item {
+    /* Removed flex/padding properties as they are no longer needed for text alignment */
+    display: block; 
+}
+
+/* THE ANCHOR POINT FOR THE BADGE */
+.badge-frame {
+    /* Increased size for better visibility */
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Looks like a circular metal setting */
+    background: linear-gradient(145deg, #a8a8a8, #6e6e6e);
+    border-radius: 50%;
+    border: 4px solid #555; /* Slightly thicker border */
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.4); /* Stronger shadow for depth */
+    
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Add a subtle hover effect to make them feel tactile */
+.badge-frame:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 12px rgba(0,0,0,0.5);
+}
+
+/* THE "MILITARIZED" ICON STYLE - Keep this the same */
+.badge-icon {
+    width: 60%; /* Adjust based on the icon shape */
+    height: auto;
+    
+    /* THE MAGIC FILTERS: */
+    /* 1. Turn it grayscale */
+    /* 2. Sepia gives it a bronze/brass tint */
+    /* 3. Contrast/Brightness makes it look like engraved metal */
+    filter: grayscale(100%) sepia(80%) contrast(150%) brightness(80%);
+    
+    /* A slight drop shadow makes it look raised off the metal backing */
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.5));
+}
