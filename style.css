@@ -574,7 +574,7 @@ body::before {
 
     /* Apply the brass texture to the icon itself */
     background-image: url('texture.png');
-    background-size: 100%;
+    background-size: 50%;
     background-position: center;
 
     /* THE MAGIC: Masking */
