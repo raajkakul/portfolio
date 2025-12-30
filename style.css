@@ -553,12 +553,12 @@ body::before {
     
     /* APPLY THE TEXTURE HERE */
     background-size: 60px 60px;
-    background-color: #c9a24d;
+    background-color: #777474;
     background-image: url('texture.png');
-    background-blend-mode: multiply;
+    background-blend-mode: normal;
     
     /* 3D Gold/Bronze Border */
-    border: 3px solid #8b6914;
+    border: 3px solid #828282
     
     /* Strong shadows to make it look like a physical object */
     box-shadow:
