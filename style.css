@@ -552,7 +552,7 @@ body::before {
     border-radius: 50%;
     
     /* APPLY THE TEXTURE HERE */
-    background-image: url('assets/brass-texture.jpg');
+    background-image: url('texture.png');
     background-size: 150px 150px; /* Small tile size makes the brass grain look sharp */
     background-position: center;
     
