@@ -542,6 +542,7 @@ body::before {
 }
 
 /* THE POLISHED BRASS FRAME */
+/* THE SOLID BRASS DISC */
 .badge-frame {
     width: 100px;
     height: 100px;
@@ -550,41 +551,44 @@ body::before {
     align-items: center;
     border-radius: 50%;
     
-    /* Using your brass texture for the physical metal disc */
-    background-image: url('texture.png');
-    background-size: 150px 150px; /* Tiling it slightly smaller for detail */
+    /* APPLY THE TEXTURE HERE */
+    background-image: url('assets/brass-texture.jpg');
+    background-size: 150px 150px; /* Small tile size makes the brass grain look sharp */
     background-position: center;
     
     /* 3D Gold/Bronze Border */
     border: 3px solid #8b6914;
     
-    /* Stronger shadows to make it look like a physical object on the paper */
+    /* Strong shadows to make it look like a physical object */
     box-shadow: 
         inset 2px 2px 4px rgba(255, 255, 255, 0.5), /* Top Highlight */
-        inset -2px -2px 4px rgba(0, 0, 0, 0.4),    /* Bottom Shadow */
-        4px 6px 10px rgba(0, 0, 0, 0.3);           /* Shadow on Paper */
+        inset -2px -2px 4px rgba(0, 0, 0, 0.4),    /* Bottom Inner Shadow */
+        4px 6px 12px rgba(0, 0, 0, 0.4);           /* Drop Shadow on Paper */
     
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Clips the glint effect */
+    transition: transform 0.3s ease;
 }
 
-/* THE ENGRAVED ICON EFFECT */
+/* THE ENGRAVED LOGO (Pressed into the metal) */
 .badge-icon {
-    font-size: 2.5rem; /* Slightly smaller to fit comfortably */
+    font-size: 2.6rem;
     
     /* Dark bronze/black color for the 'bottom' of the engraving */
     color: #2b1d0e; 
     
     /* THE TRICK: This makes it look carved into the brass disc */
+    /* It removes the need for background-masking on the icon itself */
     text-shadow: 
-        0px 1px 1px rgba(255, 255, 255, 0.4), /* Light hitting the bottom edge */
+        0px 1px 1px rgba(255, 255, 255, 0.3), /* Light hitting the bottom edge */
         -1px -1px 2px rgba(0, 0, 0, 0.7);      /* Deep shadow at the top edge */
     
-    /* Remove masking filters that were causing the 'line' issue */
-    background: none;
-    -webkit-background-clip: initial;
-    background-clip: initial;
-    -webkit-text-fill-color: initial;
+    /* Reset previous masking attempts that caused the 'line' issue */
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
 }
 
 .badge-frame:hover {
@@ -595,16 +599,27 @@ body::before {
 .badge-frame::after {
     content: "";
     position: absolute;
-    top: -50%;
+    top: -100%;
     left: -150%;
-    width: 50px;
+    width: 15px; /* Very narrow beam */
     height: 300%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(45deg);
+    background: linear-gradient(
+        to right, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%
+    );
+    transform: rotate(25deg);
     pointer-events: none;
-    transition: all 0.6s ease;
 }
 
 .badge-frame:hover::after {
-    left: 150%; /* Slides the shine across the medal on hover */
+    animation: shine-sweep 0.7s ease-in-out forwards;
+}
+
+@keyframes shine-sweep {
+    0% { left: -150%; opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { left: 200%; opacity: 0; }
 }
