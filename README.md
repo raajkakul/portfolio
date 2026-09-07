@@ -2,7 +2,7 @@
 
 Spy/classified-dossier themed portfolio site.
 
-- **Live:** https://raajkakul.github.io/portfolio
+- **Live:** https://rajkakul.me
 - **Stack:** plain HTML, CSS, vanilla JS — no framework, no build step
 - **Deploy:** GitHub Pages; pushing to `main` publishes directly
 
