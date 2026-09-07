@@ -47,8 +47,11 @@
 
   .skill-group { font-size: 0.82rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #a31d1d; border-bottom: 2px solid #8b7355; padding-bottom: 5px; margin: 26px 0 14px; }
 
-  .case-card { border: 1px solid #8b7355; background-image: url('parchment.png'); background-size: cover; box-shadow: inset 0 0 50px rgba(0,0,0,0.12); display: flex; flex-direction: column; transition: box-shadow 0.3s ease; }
-  .case-card:hover { box-shadow: inset 0 0 75px rgba(0,0,0,0.2); }
+  .case-card { position: relative; margin-top: 18px; border: 1px solid #8b7355; border-radius: 0 8px 3px 3px; background-image: url('parchment.png'); background-size: cover; box-shadow: inset 0 0 50px rgba(0,0,0,0.12), 2px 3px 7px rgba(0,0,0,0.13); display: flex; flex-direction: column; transition: box-shadow 0.3s ease, transform 0.3s ease; }
+  .case-card:hover { box-shadow: inset 0 0 75px rgba(0,0,0,0.2), 3px 5px 11px rgba(0,0,0,0.18); transform: translateY(-2px); }
+  /* folder tab: sits above the card and overlaps 1px so it reads as one piece */
+  .case-card::before { content: ""; position: absolute; top: -18px; left: -1px; width: 104px; height: 19px; background: #d2b48c; border: 1px solid #8b7355; border-bottom: none; border-radius: 7px 12px 0 0; }
+  .case-card > div:first-of-type { border-radius: 0 7px 0 0; }
 
   .dossier-btn { font-family: 'Special Elite', 'Courier New', monospace; color: #222; background: rgba(0,0,0,0.06); padding: 5px 11px; text-decoration: none; font-weight: bold; font-size: 0.78rem; display: inline-block; }
   .dossier-btn:hover { background: #222; color: #f5e6ca; }
@@ -319,7 +322,7 @@
           <div style="border:1px solid #8b7355;background-image:url('parchment.png');background-size:cover;box-shadow:inset 0 0 50px rgba(0,0,0,0.12);overflow:hidden;">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.85rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:12px;"><span style="color:#a31d1d;">GRADUATE RESEARCH ASSISTANT — COEUS/ASTROLAVOS LAB, GEORGIA TECH</span><span style="color:#3ca31d;font-size:0.72rem;white-space:nowrap;">ACTIVE</span></div>
             <div class="typed-body" style="padding:15px 18px 18px;">
-              <div style="font-size:0.75rem;opacity:0.65;margin-bottom:10px;letter-spacing:1px;">JANUARY 2026 – AUGUST 2026 &middot; ATLANTA, GA</div>
+              <div style="font-size:0.78rem;color:#1a4b8c;margin-bottom:10px;letter-spacing:1px;">JANUARY 2026 – AUGUST 2026 &middot; ATLANTA, GA</div>
               <ul style="margin:0;padding-left:18px;font-size:0.87rem;line-height:1.65;">
                 <strong>SOFTWARE SUPPLY CHAIN SECURITY:</strong>
                 <li>Recreated and validated 3 research-grade binary analysis techniques for library decomposition and source-boundary recovery by rebuilding environments with Docker and reproducing published evaluation results.</li>
@@ -334,7 +337,7 @@
           <div style="border:1px solid #8b7355;background-image:url('parchment.png');background-size:cover;box-shadow:inset 0 0 50px rgba(0,0,0,0.12);overflow:hidden;">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.85rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:12px;"><span style="color:#a31d1d;">CYBER RISK ANALYST (CONSULTING) — PRAMUKH TRANSPORT LTD.</span><span style="color:#fa0000;font-size:0.72rem;white-space:nowrap;">CLOSED</span></div>
             <div class="typed-body" style="padding:15px 18px 18px;">
-              <div style="font-size:0.75rem;opacity:0.65;margin-bottom:10px;letter-spacing:1px;">AUGUST 2022 – JANUARY 2025 &middot; KENYA &middot; PART-TIME</div>
+              <div style="font-size:0.78rem;color:#1a4b8c;margin-bottom:10px;letter-spacing:1px;">AUGUST 2022 – JANUARY 2025 &middot; KENYA &middot; PART-TIME</div>
               <ul style="margin:0;padding-left:18px;font-size:0.87rem;line-height:1.65;">
                 <li>Conducted a red-team tabletop exercise and threat model across 3 attack objectives, identifying exposed RDP and weak credential management as top risks to transport operations and driving MFA adoption to strengthen access controls.</li>
               </ul>
@@ -344,7 +347,7 @@
           <div style="border:1px solid #8b7355;background-image:url('parchment.png');background-size:cover;box-shadow:inset 0 0 50px rgba(0,0,0,0.12);overflow:hidden;">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.85rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:12px;"><span style="color:#a31d1d;">IT TECHNICIAN INTERN — AKSHAR AUTO SPARE HOUSE</span><span style="color:#fa0000;font-size:0.72rem;white-space:nowrap;">CLOSED</span></div>
             <div class="typed-body" style="padding:15px 18px 18px;">
-              <div style="font-size:0.75rem;opacity:0.65;margin-bottom:10px;letter-spacing:1px;">JUNE 2020 – AUGUST 2020 &middot; KENYA</div>
+              <div style="font-size:0.78rem;color:#1a4b8c;margin-bottom:10px;letter-spacing:1px;">JUNE 2020 – AUGUST 2020 &middot; KENYA</div>
               <ul style="margin:0;padding-left:18px;font-size:0.87rem;line-height:1.65;">
                 <li>Hardened 7 workstations through OS patching, vulnerability scanning, and password policy enforcement.</li>
               </ul>
@@ -362,7 +365,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">AGENTIC AI SYSTEM FOR MALWARE BEHAVIOR DISCOVERY</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 309</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/309-agentic-ai-malware-discovery.png" alt="AGENTIC AI SYSTEM FOR MALWARE BEHAVIOR DISCOVERY thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/309-agentic-ai-malware-discovery.png" alt="AGENTIC AI SYSTEM FOR MALWARE BEHAVIOR DISCOVERY thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Auto-locate anti-analysis triggers in malware and generate sandbox-environment patches to defeat them.</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> Python, LLM-agent orchestration, static disassembly + dynamic API-call analysis</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Uncovered 22 new malware behaviors on a class leaderboard, tied for the most of any submission, at $0.034 LLM cost.</p>
@@ -373,7 +376,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">MALWARE REVERSE ENGINEERING</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 772</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/772-malware-reverse-engineering.png" alt="MALWARE REVERSE ENGINEERING thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/772-malware-reverse-engineering.png" alt="MALWARE REVERSE ENGINEERING thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Reproduce and extend MANTILLA malware analysis to improve static detection of packed binaries.</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> Python, Ghidra, YARA, scikit-learn, pefile</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Improved detection F1-score by 15% over baseline using enhanced feature engineering.</p>
@@ -384,7 +387,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">DEFENSIVE DOMAIN REGISTRATIONS</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 099</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/099-defensive-domain-registrations.png" alt="DEFENSIVE DOMAIN REGISTRATIONS thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/099-defensive-domain-registrations.png" alt="DEFENSIVE DOMAIN REGISTRATIONS thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Cost-effective, data-driven defensive domain-registration strategy against cybersquatting (team of 4).</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> Python, pandas, NumPy, Matplotlib, tldextract, Jupyter</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Strongest dispute-risk correlations found with company assets (r≈0.29) and OSINT-flagged activity (r≈0.35) across 27 Fortune 500 companies.</p>
@@ -395,7 +398,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">CYBERSEC OF DRONES</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 277</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/277-cybersec-of-drones.png" alt="CYBERSEC OF DRONES thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/277-cybersec-of-drones.png" alt="CYBERSEC OF DRONES thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Detect and mitigate GPS spoofing and RF hijacking against UAV platforms in the field.</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> Python, GNU Radio, SDR, Scapy</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Detected spoofing within 1.2s and blocked 98% of hijack attempts in controlled tests.</p>
@@ -406,7 +409,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">LLM SAFETY UNDER QUANTIZATION</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 506</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/506-llm-safety-quantization.png" alt="LLM SAFETY UNDER QUANTIZATION thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/506-llm-safety-quantization.png" alt="LLM SAFETY UNDER QUANTIZATION thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Quantify whether compressing an LLM for local deployment weakens its jailbreak guardrails (team of 4).</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> Python, HuggingFace Transformers, BitsAndBytes, llama.cpp/GGUF, JailbreakBench</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Quantization method mattered more than compression level; model choice mattered most of all.</p>
@@ -417,7 +420,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">VLM ATTENTION</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 207</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/207-vlm-attention.png" alt="VLM ATTENTION thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/207-vlm-attention.png" alt="VLM ATTENTION thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Determine when VLMs genuinely use visual evidence vs. linguistic priors, across dialogue turns (team of 4).</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> Python, BLIP-2, LLaVA-1.5, Qwen2.5-VL, attention rollout, COCO dataset</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Qwen2.5-VL was the most visually grounded of the three models tested; BLIP-2 the least.</p>
@@ -428,7 +431,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">ML-BASED IDS</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 711</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/711-ml-based-ids.png" alt="ML-BASED IDS thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/711-ml-based-ids.png" alt="ML-BASED IDS thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Remove backdoor poisoning from a deep-learning IDS via machine unlearning, cross-verified by a rule-based IDS (team of 3).</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> Python, PyTorch, Suricata, CIC-IDS2017</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Restored 100% detection of backdoored flows post-unlearning with clean accuracy unchanged at 99.27%.</p>
@@ -439,7 +442,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">CYBER-PHYSICAL SYSTEMS</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 418</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/418-cyber-physical-systems.png" alt="CYBER-PHYSICAL SYSTEMS thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/418-cyber-physical-systems.png" alt="CYBER-PHYSICAL SYSTEMS thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Secure control-loop framework for resilient cyber-physical infrastructure under attack.</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> C, RTOS, MATLAB/Simulink, MQTT</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Sustained safe operation under simulated fault and false-data injection.</p>
@@ -450,7 +453,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">DATA ANALYTICS - DRIVERS FOR CYBER CONFLICT</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 655</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/655-data-analytics-cyber-conflict.png" alt="DATA ANALYTICS - DRIVERS FOR CYBER CONFLICT thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/655-data-analytics-cyber-conflict.png" alt="DATA ANALYTICS - DRIVERS FOR CYBER CONFLICT thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Identify the real structural drivers of state-sponsored cyberattack targeting frequency (solo project).</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> R, OLS regression, CFR Cyber Operations Tracker, V-Dem, World Bank Open Data</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Internet penetration — not regime type — is the dominant predictor of targeting (p&lt;0.01).</p>
@@ -461,7 +464,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">SECURE CLOUD WEB APPLICATION</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 824</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/824-secure-cloud-web-app.png" alt="SECURE CLOUD WEB APPLICATION thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/824-secure-cloud-web-app.png" alt="SECURE CLOUD WEB APPLICATION thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Zero-trust cloud web application with hardened authentication and full audit logging.</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> Node.js, React, AWS, Terraform, OAuth2</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Passed external penetration test with zero critical findings.</p>
@@ -472,7 +475,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">HANDHELD EMBEDDED DEVICE</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 388</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/388-handheld-embedded-device.png" alt="HANDHELD EMBEDDED DEVICE thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/388-handheld-embedded-device.png" alt="HANDHELD EMBEDDED DEVICE thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Design and build a handheld gaming device from raw microcontroller components (team of 4).</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> C++, mbed LPC1768 SDK, RTOS, uLCD-144G2</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> Working maze/coin game across 3 difficulty levels with mutex-guarded multithreaded LCD rendering.</p>
@@ -483,7 +486,7 @@
           <div class="case-card">
             <div style="background:#d2b48c;color:#333;padding:8px 14px;font-weight:bold;font-size:0.8rem;letter-spacing:0.5px;border-bottom:1px solid #8b7355;display:flex;justify-content:space-between;align-items:baseline;gap:10px;min-height:50px;"><span style="color:#a31d1d;">ANDROID GAME DEVELOPMENT</span><span style="font-size:0.7rem;white-space:nowrap;opacity:0.8;">FILE 512</span></div>
             <div class="typed-body" style="padding:15px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1;">
-              <img src="project-thumbnails/512-android-game-development.png" alt="ANDROID GAME DEVELOPMENT thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;filter:grayscale(1);object-fit:cover;display:block;">
+              <img src="project-thumbnails/512-android-game-development.png" alt="ANDROID GAME DEVELOPMENT thumbnail" style="width:100%;height:148px;border:1px solid #8b7355;object-fit:contain;background:#efe1c5;display:block;">
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>OBJECTIVE:</strong> Apply core OOP design patterns to build a complete, testable Android game (team of 7).</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>TECH STACK:</strong> Java, Android SDK, JUnit 4, Mockito, Espresso</p>
               <p style="font-size:0.85rem;line-height:1.55;margin:0;"><strong>IMPACT:</strong> 2nd-most active contributor on the team (76 of 390 commits) — combat system, enemy Factory pattern, core screens.</p>
