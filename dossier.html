@@ -73,6 +73,14 @@
     detail are pending release. The operation is complete; the paperwork is not.
   </div>
 
+  <!-- ============================================================
+       TEMPORARILY HIDDEN (2026-09-07) while the per-project write-ups
+       are reworked. Only the FILE STATUS notice above is shown.
+       The DB object below is untouched and still holds every project's
+       real content. The render script is null-safe, so uncommenting
+       this block restores everything with NO script changes needed.
+       ============================================================ -->
+  <!--
   <section>
     <h2 style="border-bottom:2px solid #222;margin-top:40px;color:#a31d1d;">MISSION DEBRIEF (TECHNICAL SPECS)</h2>
     <p id="op-debrief"></p>
@@ -104,6 +112,7 @@
       </div>
     </div>
   </main>
+  -->
 
 </div>
 
@@ -127,32 +136,42 @@ const DB = {
 const id = new URLSearchParams(window.location.search).get('id') || '099-SQUAT';
 const p = DB[id] || DB['099-SQUAT'];
 
-document.title = 'OPERATION: ' + p.codename + ' — Case Report';
-document.getElementById('op-subtitle').textContent = 'OPERATION: ' + p.codename;
-document.getElementById('op-debrief').textContent = p.debrief;
-document.getElementById('op-objective').textContent = p.objective;
-document.getElementById('op-stack').textContent = p.stack;
+// The per-project body sections are commented out of the DOM for now, so every
+// lookup below has to tolerate a missing element. Keeping the script null-safe
+// means restoring that markup needs no changes here.
+const el = function (elId) { return document.getElementById(elId); };
+const setText = function (elId, text) { const n = el(elId); if (n) { n.textContent = text; } };
 
-const resultsWrap = document.getElementById('op-results-wrap');
-if (p.results) {
-  document.getElementById('op-results').textContent = p.results;
-} else {
-  resultsWrap.style.display = 'none';
+document.title = 'OPERATION: ' + p.codename + ' — Case Report';
+setText('op-subtitle', 'OPERATION: ' + p.codename);
+setText('op-debrief', p.debrief);
+setText('op-objective', p.objective);
+setText('op-stack', p.stack);
+
+const resultsWrap = el('op-results-wrap');
+if (resultsWrap) {
+  if (p.results) {
+    setText('op-results', p.results);
+  } else {
+    resultsWrap.style.display = 'none';
+  }
 }
 
-const repoBtn = document.getElementById('op-repo');
-const norepoNote = document.getElementById('op-norepo');
-if (p.repo) {
-  repoBtn.href = p.repo;
-  repoBtn.textContent = 'VIEW SOURCE CODE ON EXTERNAL TERMINAL (GITHUB)';
-  repoBtn.setAttribute('data-goatcounter-click', 'repo-' + id);
-} else if (p.demo) {
-  repoBtn.href = p.demo;
-  repoBtn.textContent = p.demoLabel || 'VIEW FIELD DEMO';
-  repoBtn.setAttribute('data-goatcounter-click', 'demo-' + id);
-} else {
-  repoBtn.style.display = 'none';
-  norepoNote.style.display = 'block';
+const repoBtn = el('op-repo');
+const norepoNote = el('op-norepo');
+if (repoBtn) {
+  if (p.repo) {
+    repoBtn.href = p.repo;
+    repoBtn.textContent = 'VIEW SOURCE CODE ON EXTERNAL TERMINAL (GITHUB)';
+    repoBtn.setAttribute('data-goatcounter-click', 'repo-' + id);
+  } else if (p.demo) {
+    repoBtn.href = p.demo;
+    repoBtn.textContent = p.demoLabel || 'VIEW FIELD DEMO';
+    repoBtn.setAttribute('data-goatcounter-click', 'demo-' + id);
+  } else {
+    repoBtn.style.display = 'none';
+    if (norepoNote) { norepoNote.style.display = 'block'; }
+  }
 }
 
 // Decrypt-on-hover
