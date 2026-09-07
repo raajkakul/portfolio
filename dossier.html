@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Detailed Case Report</title>
 <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Barcode+39&family=Beth+Ellen&display=swap" rel="stylesheet">
+<script>
+  // Report each case file under its own path so the 13 projects don't collapse
+  // into a single "dossier.html" row. Mirrors the page's own 099-SQUAT fallback.
+  window.goatcounter = {
+    path: function () {
+      var raw = new URLSearchParams(location.search).get('id');
+      if (!raw) { return '/dossier/099-SQUAT'; }        // page's own fallback
+      var id = raw.toUpperCase();
+      // Only record ids shaped like a real file id (309-AGENT). Anything else is
+      // someone poking at the URL - bucket it rather than let it create rows.
+      return /^[0-9]{3}-[A-Z]+$/.test(id) ? '/dossier/' + id : '/dossier/unknown';
+    }
+  };
+</script>
+<script data-goatcounter="https://rajkakul.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; width: 100%; min-height: 100vh; }
@@ -123,9 +139,11 @@ const norepoNote = document.getElementById('op-norepo');
 if (p.repo) {
   repoBtn.href = p.repo;
   repoBtn.textContent = 'VIEW SOURCE CODE ON EXTERNAL TERMINAL (GITHUB)';
+  repoBtn.setAttribute('data-goatcounter-click', 'repo-' + id);
 } else if (p.demo) {
   repoBtn.href = p.demo;
   repoBtn.textContent = p.demoLabel || 'VIEW FIELD DEMO';
+  repoBtn.setAttribute('data-goatcounter-click', 'demo-' + id);
 } else {
   repoBtn.style.display = 'none';
   norepoNote.style.display = 'block';
