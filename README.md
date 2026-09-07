@@ -1,10 +1,7 @@
-# Raj Patel — Portfolio
+# My portfolio
 
-Spy/classified-dossier themed portfolio site.
+Spy/classified-dossier themed portfolio site, check it out!
 
 - **Live:** https://rajkakul.me
-- **Stack:** plain HTML, CSS, vanilla JS — no framework, no build step
-- **Deploy:** GitHub Pages; pushing to `main` publishes directly
+- **Stack:** plain HTML, CSS, vanilla JS
 
-`index.html` is the portfolio; `dossier.html` renders per-project detail pages from a
-`?id=` URL parameter.
