@@ -83,8 +83,19 @@
   .doc-tab[aria-selected="true"] { background: #d2b48c; border-bottom-color: #d2b48c; color: #a31d1d; z-index: 1; }
   .doc-frame { border: 1px solid #8b7355; background: #d2b48c; padding: 8px; }
   .doc-frame iframe { display: block; width: 100%; height: 80vh; min-height: 520px; border: 1px solid #8b7355; background: #efe1c5; }
+  .doc-image { display: block; width: 100%; height: auto; border: 1px solid #8b7355; background: #efe1c5; }
   .doc-note { margin: 0; border: 1px dashed #8b7355; background: #efe1c5; padding: 18px 16px; font-size: 0.95rem; }
   .doc-meta { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 0.8rem; letter-spacing: 1px; }
+
+  /* Source-code readout: a dark "terminal" panel, on-theme with the redacted/button darks.
+     Fixed height so a long file scrolls in place; long lines scroll sideways inside it. */
+  .code-panel { margin-top: 20px; border: 1px solid #8b7355; background: #1e1e1e; }
+  .code-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; background: #2d2d2d; color: #d2b48c; font-family: 'Special Elite', 'Courier New', monospace; font-size: 0.8rem; letter-spacing: 1px; padding: 6px 12px; border-bottom: 1px solid #8b7355; }
+  .code-bar a { color: #d2b48c; text-decoration: none; font-weight: bold; }
+  .code-bar a:hover { color: #e8b4b4; }
+  .code-scroll { max-height: 460px; overflow: auto; }
+  .code-scroll pre { margin: 0; padding: 14px 16px; }
+  .code-scroll code { display: block; font-family: 'Courier Prime', 'Courier New', Courier, monospace; font-size: 0.8rem; line-height: 1.5; color: #e8e8e8; white-space: pre; }
 
   @media (max-width: 850px) {
     .stamp { top: 30px; right: 6px; font-size: 0.95rem; padding: 3px 8px; border-width: 3px; }
@@ -134,17 +145,28 @@
       <div id="op-skills"></div>
     </section>
 
-    <section>
+    <section id="op-links-section">
       <h2 class="section-heading">EXTERNAL ARCHIVES</h2>
       <div id="op-links" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;"></div>
-      <p id="op-norepo" style="margin-top:20px;font-size:0.8rem;opacity:0.7;" hidden>// NO EXTERNAL ARCHIVE LINKED FOR THIS OPERATION //</p>
+    </section>
+
+    <section id="op-code-section" hidden>
+      <h2 class="section-heading">SOURCE CODE</h2>
+      <div class="code-panel">
+        <div class="code-bar">
+          <span id="op-code-name"></span>
+          <a id="op-code-open" href="#" target="_blank" rel="noopener">OPEN RAW ↗</a>
+        </div>
+        <div class="code-scroll"><pre><code id="op-code"></code></pre></div>
+      </div>
     </section>
 
     <section id="op-docs-section">
       <h2 class="section-heading">EVIDENCE</h2>
       <div id="op-doc-tabs" class="doc-tabs" role="tablist" aria-label="Case documents"></div>
       <div class="doc-frame">
-        <iframe id="op-doc-viewer" loading="lazy" title="Case document"></iframe>
+        <iframe id="op-doc-viewer" loading="lazy" title="Case document" hidden></iframe>
+        <img id="op-doc-image" class="doc-image" alt="" hidden>
         <p id="op-doc-note" class="doc-note typed-body" hidden>Documents don't display well on small screens. Tap the button below to open this one in a new tab.</p>
       </div>
       <div class="doc-meta">
@@ -175,7 +197,31 @@
 // Every other entry shows only the ACTIVE COMPILATION notice. Their debrief / objective /
 // stack / results fields are the old write-ups, kept as raw material for the rewrite.
 const DB = {
-  '309-AGENT': { title: 'AGENTIC AI SYSTEM FOR MALWARE BEHAVIOR DISCOVERY', codename: 'AGENTIC-OPS', debrief: 'A two-task LLM-agent pipeline pairs static disassembly with dynamic sandbox API-call logs. An LLM agent first locates the exact branch instruction where a malware sample detects analysis and terminates early, then a second LLM call auto-generates a Python script that patches the sandbox environment to defeat that specific check (e.g. blocking a bogus DGA-style domain via the hosts file when the sample probes for internet connectivity).', objective: 'Automatically locate anti-analysis triggers in malware samples and generate sandbox-environment patches to defeat them.', stack: 'Python, LLM-agent orchestration, static disassembly analysis, dynamic API-call sandbox telemetry', results: 'Uncovered 22 new malware behaviors on a class leaderboard — tied for the most of any submission — at just $0.034 in LLM cost, among the cheapest submissions shown.' },
+  '309-AGENT': {
+    title: 'AGENTIC AI SYSTEM FOR MALWARE BEHAVIOR DISCOVERY', codename: 'AGENTIC-OPS', released: true,
+    summary: [
+      "Some malware is sneaky: before it does anything bad, it checks whether it's being watched. If it decides it's sitting inside a security researcher's sandbox instead of a real computer, it just quietly shuts itself down so nobody can see what it actually does. That makes it hard to study. I built an AI agent that figures out what each sample is checking for and then writes a script to trick it into running for real.",
+      "It works in two steps per sample. First, the agent reads two things: a log of everything the program did while running (its API calls) and a disassembly of its code. It looks at the moment right before the program killed itself, hands the last few actions to an LLM, and asks it to spot the exact check that scared the malware off — usually a nonsense website it tried to reach, a system-clock check, or a missing file it expected to find. Then it zooms into the code at that spot and has the LLM pick out the exact branch instruction where the program decides to bail.",
+      "Second, the agent takes that check and asks the LLM to write a small Python script that changes the sandbox so the check passes. If the malware wanted a file that wasn't there, the script creates it. If it was pinging a garbage web address, the script blocks that address in the computer's hosts file. Once the check passes, the malware keeps running and finally shows what it was built to do."
+    ],
+    findings: [
+      "On a class leaderboard, this submission uncovered 22 new malware behaviors — tied for the most of any entry.",
+      "It did that for about 3.4 cents of AI usage (~7,700 input and ~6,600 output tokens), one of the cheapest runs on the board — some entries spent 15x more to find the same 22 or fewer.",
+      "Across the three test samples, it located the evasion check on the first or second try every time.",
+      "Real example (sample 2): the malware was trying to reach a made-up web address, so the agent wrote a script that points that address at 127.0.0.1 in the hosts file. The malware's connection check then “succeeds” and it runs on."
+    ],
+    closing: [
+      "The takeaway: a small, cheap AI agent can take over a chunk of the tedious reverse-engineering work — spotting anti-analysis tricks and defeating them — that normally means an analyst poking at a sample by hand."
+    ],
+    skills: {
+      tools: ['Python', 'LLM agents', 'Prompt engineering'],
+      methods: ['Malware behavior analysis', 'Static disassembly analysis', 'Dynamic API-call tracing', 'Anti-analysis / sandbox evasion', 'Automated bypass generation']
+    },
+    code: { label: 'solution.py', file: 'case-files/309-AGENT/solution.py' },
+    docs: [
+      { key: 'leaderboard', label: 'CLASS LEADERBOARD', file: 'case-files/309-AGENT/leaderboard-row3.png', info: 'THIS SUBMISSION — 22 BEHAVIORS AT $0.034' }
+    ]
+  },
   '772-MANTILLA': { title: 'MALWARE REVERSE ENGINEERING', codename: 'MANTILLA', debrief: 'This mission reproduces and extends the MANTILLA analysis pipeline, combining static disassembly features with learned classifiers to flag packed and obfuscated binaries that evade signature engines.', objective: 'Reproduce and extend MANTILLA malware analysis to improve static detection of packed binaries.', stack: 'Python, Ghidra, YARA, scikit-learn, pefile' },
   '233-CTI': { title: 'CTI', codename: 'WATCHTOWER', debrief: 'A collection and correlation platform that normalizes disparate threat feeds into a unified intelligence picture, enriching indicators and surfacing campaigns through graph-based clustering.', objective: 'Aggregate and correlate threat feeds into actionable intelligence dashboards.', stack: 'Python, Elasticsearch, MISP, STIX/TAXII' },
   '099-SQUAT': { title: 'DEFENSIVE DOMAIN REGISTRATIONS', codename: 'SQUAT-SWAT', debrief: 'Working as the customer-acquisition team for a fictional online brand-protection firm competing for a Fortune-500 contract, this project analyzes which typo-squatted domain variants a company should defensively register under a fixed budget. Five typo-squatting transformation models (Wang et al., 2006) generate candidate domains, cross-checked against live zone-file registrations and historical dispute data across 27 Fortune 500 companies. Team project of 4, ECE 8813.', objective: 'Design a cost-effective, data-driven defensive domain-registration strategy against cybersquatting.', stack: 'Python, pandas, NumPy, Matplotlib, tldextract, Jupyter', results: 'Strongest dispute-risk correlations found were with company assets (r ≈ 0.29) and OSINT-flagged malicious-domain activity (r ≈ 0.35); Mining/Oil & Gas and Manufacturing sectors showed the highest average typo-dispute rates.', repo: 'https://github.com/sli857/ECE8813_FinalProject' },
@@ -269,17 +315,38 @@ const renderLinks = function () {
     a.setAttribute('data-goatcounter-click', l[2]);
     el('op-links').appendChild(a);
   });
-  if (!links.length) { el('op-norepo').hidden = false; }
+  // Nothing external for this operation: drop the whole section rather than show an
+  // empty-state note.
+  if (!links.length) { el('op-links-section').hidden = true; }
 };
+
+const renderCode = function () {
+  if (!p.code) { el('op-code-section').hidden = true; return; }
+  el('op-code-section').hidden = false;
+  setText('op-code-name', p.code.label || p.code.file.split('/').pop());
+  const raw = el('op-code-open');
+  raw.href = p.code.file;
+  raw.setAttribute('data-goatcounter-click', 'code-' + key);
+  // Fetch and inject as textContent (never innerHTML) so the source can't inject markup.
+  // Same-origin on the live site and the local preview; a failure leaves a short note.
+  fetch(p.code.file).then(function (r) { if (!r.ok) { throw new Error(r.status); } return r.text(); })
+    .then(function (t) { el('op-code').textContent = t; })
+    .catch(function () { el('op-code').textContent = '// Source did not load inline — use OPEN RAW above.'; });
+};
+
+const isImage = function (file) { return /\.(png|jpe?g|gif|webp|svg)$/i.test(file); };
 
 const renderDocs = function () {
   const docs = p.docs || [];
   if (!docs.length) { el('op-docs-section').hidden = true; return; }
   const tabs = el('op-doc-tabs');
   const viewer = el('op-doc-viewer');
+  const image = el('op-doc-image');
   const open = el('op-doc-open');
+  // One document doesn't need a tab strip to switch between; hide it.
+  if (docs.length < 2) { tabs.hidden = true; }
   // Phones, and browsers with no built-in PDF viewer, get the open button only: an inline
-  // PDF there renders blank or as a single frozen first page.
+  // PDF there renders blank or as a single frozen first page. Images display fine anywhere.
   const wide = window.matchMedia('(min-width: 851px)');
   let current = 0;
 
@@ -289,11 +356,20 @@ const renderDocs = function () {
     Array.prototype.forEach.call(tabs.children, function (b, j) {
       b.setAttribute('aria-selected', j === i ? 'true' : 'false');
     });
-    const inline = wide.matches && navigator.pdfViewerEnabled !== false;
-    viewer.hidden = !inline;
-    el('op-doc-note').hidden = inline;
-    if (inline && viewer.getAttribute('src') !== d.file) { viewer.setAttribute('src', d.file); }
-    viewer.title = d.label;
+    if (isImage(d.file)) {
+      if (image.getAttribute('src') !== d.file) { image.setAttribute('src', d.file); }
+      image.alt = d.label;
+      image.hidden = false;
+      viewer.hidden = true;
+      el('op-doc-note').hidden = true;
+    } else {
+      const inline = wide.matches && navigator.pdfViewerEnabled !== false;
+      if (inline && viewer.getAttribute('src') !== d.file) { viewer.setAttribute('src', d.file); }
+      viewer.title = d.label;
+      viewer.hidden = !inline;
+      image.hidden = true;
+      el('op-doc-note').hidden = inline;
+    }
     setText('op-doc-info', d.info);
     open.href = d.file;
     open.textContent = '[ OPEN ' + d.label + ' IN NEW TAB ]';
@@ -331,6 +407,7 @@ if (p.released) {
 
   renderSkills();
   renderLinks();
+  renderCode();
   renderDocs();
 
   // count.js may have scanned the page before these links existed. bind_events skips
