@@ -83,7 +83,9 @@
   .doc-tab[aria-selected="true"] { background: #d2b48c; border-bottom-color: #d2b48c; color: #a31d1d; z-index: 1; }
   .doc-frame { border: 1px solid #8b7355; background: #d2b48c; padding: 8px; }
   .doc-frame iframe { display: block; width: 100%; height: 80vh; min-height: 520px; border: 1px solid #8b7355; background: #efe1c5; }
-  .doc-image { display: block; width: 100%; height: auto; border: 1px solid #8b7355; background: #efe1c5; }
+  /* max-width, not width: a screenshot narrower than the frame stays at its own size
+     rather than being upscaled into blur. Wider ones still shrink to fit. */
+  .doc-image { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid #8b7355; background: #efe1c5; }
   .doc-note { margin: 0; border: 1px dashed #8b7355; background: #efe1c5; padding: 18px 16px; font-size: 0.95rem; }
   .doc-meta { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 0.8rem; letter-spacing: 1px; }
 
@@ -306,7 +308,33 @@ const DB = {
       { key: 'diagram', label: 'PIPELINE DIAGRAM', file: 'case-files/207-VLM/pipeline-diagram.png', info: 'EXPERIMENTAL PIPELINE (FIGURE 1)' }
     ]
   },
-  '711-IDS': { title: 'ML-BASED IDS', codename: 'SENTINEL', debrief: 'A deep-learning IDS (MLP over network-flow features) is deliberately backdoored via a TTL-based trigger, then a rule-based IDS (Suricata) is used to relabel poisoned training samples so the model can be fine-tuned to "forget" the backdoor without a full retrain. Team project of 3.', objective: 'Remove backdoor poisoning from a deep-learning intrusion detection system using machine unlearning, cross-verified by a rule-based IDS.', stack: 'Python, PyTorch, Suricata, CIC-IDS2017 (CAIA backdoor variant), Scapy', results: 'Restored 100% detection of backdoor-triggered SSH brute-force flows after unlearning, with clean-traffic accuracy unchanged at 99.27%; the custom Suricata detection rule ran at ~98% accuracy.' },
+  '711-IDS': {
+    title: 'ML-BASED IDS', codename: 'SENTINEL', released: true,
+    summary: [
+      "An intrusion detection system built on deep learning can be sabotaged while it's still being trained. If an attacker slips poisoned examples into the training data, they can teach the model a secret signal — a backdoor — that makes it wave malicious traffic straight through. Here the signal hid in the TTL field, the number limiting how many hops a packet can travel: nudge it by one, and 2,551 SSH brute-force attacks got relabelled as normal. The model duly learned that anything carrying that nudge is fine.",
+      "Retraining from scratch to purge a backdoor is expensive, so we tried machine unlearning instead — fine-tune the compromised model just enough that it forgets. The hard part is knowing which labels are lies. Our answer was to have a much dumber, much more predictable system check the model's homework: Suricata, a rule-based IDS that only matches patterns. We wrote a rule for SSH brute force (more than two connection attempts from one source inside sixty seconds), ran it over the raw packet captures, and cross-referenced its alerts against the training set by IP, port and timestamp. Any flow Suricata called an attack but the dataset called benign was a planted lie. Relabel those, fine-tune on the corrected data, and the backdoor goes away."
+    ],
+    findings: [
+      "The backdoor worked perfectly, which is the alarming part. The poisoned model scored 99.27% accuracy overall while classifying 100% of triggered attacks as benign. Nothing in its headline metrics would tell you it had been compromised.",
+      "The Suricata rule caught all 2,551 poisoned flows. Across 5,220 alerts it produced 5,116 true positives, roughly 98% precision.",
+      "After fine-tuning on the corrected labels, the model detected 100% of the previously poisoned samples as attacks.",
+      "The cleanup cost nothing elsewhere: clean-traffic accuracy held at 99.27%, with precision 0.9903, recall 0.9809 and F1 0.9856."
+    ],
+    closing: [
+      "The catch is that this defence needs a hand-written rule for the attack you're defending against. SSH brute force has an obvious signature; infiltration or an FTP attack with varying ports and timing is much harder to pin down precisely. It also means running a second IDS alongside the first.",
+      "Still, the idea generalises. When you can't trust what a learned model was taught, a simpler system whose rules you can actually read makes a decent invigilator."
+    ],
+    skills: {
+      tools: ['Python', 'PyTorch', 'Suricata', 'Scapy', 'CIC-IDS2017 (CAIA backdoor variant)'],
+      methods: ['Backdoor / data-poisoning attacks', 'Machine unlearning', 'Rule-based detection engineering', 'Network flow analysis', 'Model fine-tuning']
+    },
+    repo: 'https://github.com/varkeymjohn/ML-IDS_Backdoor_Unlearning',
+    repoLabel: 'VIEW DATASET AND REPLICATION STEPS (GITHUB)',
+    docs: [
+      { key: 'trigger', label: 'THE BACKDOOR TRIGGER', file: 'case-files/711-IDS/ttl-trigger-code.png', info: 'SCAPY CODE THAT NUDGES THE TTL FIELD' },
+      { key: 'report', label: 'FULL REPORT', file: 'case-files/711-IDS/report.pdf', info: '7 PAGES · 0.2 MB' }
+    ]
+  },
   '418-CPS': { title: 'CYBER-PHYSICAL SYSTEMS', codename: 'IRONGRID', debrief: 'A resilient control-loop framework for cyber-physical infrastructure that maintains safe operation under fault and false-data injection through redundant estimation and anomaly gating.', objective: 'Secure control-loop framework for resilient cyber-physical infrastructure.', stack: 'C, RTOS, MATLAB/Simulink, MQTT' },
   '655-DATA': {
     title: 'DATA ANALYTICS - DRIVERS FOR CYBER CONFLICT', codename: 'REDLINE', released: true,
@@ -405,7 +433,9 @@ const renderSkills = function () {
 
 const renderLinks = function () {
   const links = [];
-  if (p.repo) { links.push([p.repo, 'VIEW SOURCE CODE ON EXTERNAL TERMINAL (GITHUB)', 'repo-' + key]); }
+  // repoLabel overrides the default wording — use it when the repo isn't the team's own
+  // code (711 links a fork that carries the dataset and replication steps).
+  if (p.repo) { links.push([p.repo, p.repoLabel || 'VIEW SOURCE CODE ON EXTERNAL TERMINAL (GITHUB)', 'repo-' + key]); }
   if (p.demo) { links.push([p.demo, p.demoLabel || 'VIEW FIELD DEMO', 'demo-' + key]); }
   links.forEach(function (l) {
     const a = document.createElement('a');
