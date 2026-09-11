@@ -224,7 +224,33 @@ const DB = {
   },
   '772-MANTILLA': { title: 'MALWARE REVERSE ENGINEERING', codename: 'MANTILLA', debrief: 'This mission reproduces and extends the MANTILLA analysis pipeline, combining static disassembly features with learned classifiers to flag packed and obfuscated binaries that evade signature engines.', objective: 'Reproduce and extend MANTILLA malware analysis to improve static detection of packed binaries.', stack: 'Python, Ghidra, YARA, scikit-learn, pefile' },
   '233-CTI': { title: 'CTI', codename: 'WATCHTOWER', debrief: 'A collection and correlation platform that normalizes disparate threat feeds into a unified intelligence picture, enriching indicators and surfacing campaigns through graph-based clustering.', objective: 'Aggregate and correlate threat feeds into actionable intelligence dashboards.', stack: 'Python, Elasticsearch, MISP, STIX/TAXII' },
-  '099-SQUAT': { title: 'DEFENSIVE DOMAIN REGISTRATIONS', codename: 'SQUAT-SWAT', debrief: 'Working as the customer-acquisition team for a fictional online brand-protection firm competing for a Fortune-500 contract, this project analyzes which typo-squatted domain variants a company should defensively register under a fixed budget. Five typo-squatting transformation models (Wang et al., 2006) generate candidate domains, cross-checked against live zone-file registrations and historical dispute data across 27 Fortune 500 companies. Team project of 4, ECE 8813.', objective: 'Design a cost-effective, data-driven defensive domain-registration strategy against cybersquatting.', stack: 'Python, pandas, NumPy, Matplotlib, tldextract, Jupyter', results: 'Strongest dispute-risk correlations found were with company assets (r ≈ 0.29) and OSINT-flagged malicious-domain activity (r ≈ 0.35); Mining/Oil & Gas and Manufacturing sectors showed the highest average typo-dispute rates.', repo: 'https://github.com/sli857/ECE8813_FinalProject' },
+  '099-SQUAT': {
+    title: 'DEFENSIVE DOMAIN REGISTRATIONS', codename: 'SQUAT-SWAT', released: true,
+    summary: [
+      "Typosquatting is when someone registers a misspelling of a company's domain, points it at a phishing page, and waits for the traffic — or just sits on the name until the company buys it back. The standard defense is to register the lookalikes yourself first. The problem is arithmetic: one brand has thousands of plausible misspellings, each costs $200 to register, chasing a squatter down afterwards costs $1,200, and the budget covers a small slice of the space. So the real question is which slice is worth buying.",
+      "Rather than guess at the misspellings, we learned them from real cases. We had the full dispute history for 27 Fortune 500 brands — 591 domains they had actually taken action against. For each genuine-to-fake pair we worked out the shortest set of edits that turns one into the other, then wrote those edits in hashcat's rule syntax, the same mutation language password-cracking tools use. Counting how often each rule showed up gave us a ranked grammar of what squatters actually do. That grammar replays against any new client's domain to generate candidates, which we then filter against the zone file to drop anything already registered, and buy down the ranked list until the money runs out."
+    ],
+    findings: [
+      "The most common attack isn't a typo at all. It's dropping the dot after www, so microsoft.com becomes wwwmicrosoft.com. That one pattern showed up more than any other in the real disputes.",
+      "After that it's mostly swapped and dropped letters: libertymutual.com to libetrymutual.com, advanceautoparts.com to advaceautoparts.com, microsoft.com to microsof.com.",
+      "591 real disputes collapsed into roughly 290 distinct rules, with a long tail — a handful of patterns cover a lot of ground and then it fragments fast. That shape is exactly what makes ranking worth doing.",
+      "None of the obvious brand attributes predicted who gets hit. Popularity came out at r = -0.08 and market value at r = 0.01, so you can't look at a client's size and infer how much budget they need."
+    ],
+    closing: [
+      "The strategy we built on this was selected over the competing proposal.",
+      "The part worth keeping is the framing. Squatting is a mutation problem, and password cracking already has a mature language for describing mutations. Borrowing it meant the attack patterns came from evidence instead of from someone's guess about what a typo looks like."
+    ],
+    skills: {
+      tools: ['Python', 'hashcat rule syntax', 'NumPy', 'Matplotlib', 'Jupyter'],
+      methods: ['Damerau-Levenshtein edit distance', 'Rule mining', 'Typosquatting / brand protection', 'Attack surface enumeration', 'Cost-constrained decision making']
+    },
+    repo: 'https://github.com/sli857/ECE8813_FinalProject/tree/david/generateRules',
+    code: { label: 'infer_hashcat_domain_rules.py', file: 'case-files/099-SQUAT/infer_hashcat_domain_rules.py' },
+    docs: [
+      { key: 'scatter', label: 'MARKET VALUE VS DISPUTES', file: 'case-files/099-SQUAT/typos-vs-market-value.png', info: 'NO RELATIONSHIP — r = 0.01 ACROSS 27 BRANDS' },
+      { key: 'sectors', label: 'DISPUTES BY SECTOR', file: 'case-files/099-SQUAT/disputes-by-sector.png', info: 'TOTAL DISPUTED LOOKALIKES PER NAICS SECTOR' }
+    ]
+  },
   '277-DRONE': { title: 'CYBERSEC OF DRONES', codename: 'SKYGUARD', debrief: 'A software-defined-radio defense suite that monitors GNSS and control-link signals on UAV platforms, fingerprinting spoofing and hijack attempts and triggering automated countermeasures.', objective: 'Detect and mitigate GPS spoofing and RF hijacking against UAV platforms.', stack: 'Python, GNU Radio, SDR, Scapy' },
   '506-LLM': {
     title: 'LLM SAFETY UNDER QUANTIZATION', codename: 'COLDSTART', released: true,
