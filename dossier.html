@@ -255,7 +255,31 @@ const DB = {
   '207-VLM': { title: 'VLM ATTENTION', codename: 'DEEPGAZE', debrief: 'Builds a controlled framework for testing visual grounding in vision-language models using COCO images with accurate and deliberately corrupted captions, plus a five-level "Visual Necessity Ladder" of questions, evaluated in both single-turn and multi-turn dialogue across three architectures. Team project of 4, 8803 Conversational AI.', objective: 'Determine when vision-language models genuinely use visual evidence versus relying on linguistic priors, and how conversational history affects that balance.', stack: 'Python, BLIP-2, LLaVA-1.5, Qwen2.5-VL, attention rollout, COCO dataset', results: 'Qwen2.5-VL proved the most visually grounded of the three (highest Modality Dominance Index, lowest fooling rate); BLIP-2 was the least, and multi-turn dialogue amplified caption-driven errors across all models.', repo: 'https://github.com/aniketiyer15/vlm_attention' },
   '711-IDS': { title: 'ML-BASED IDS', codename: 'SENTINEL', debrief: 'A deep-learning IDS (MLP over network-flow features) is deliberately backdoored via a TTL-based trigger, then a rule-based IDS (Suricata) is used to relabel poisoned training samples so the model can be fine-tuned to "forget" the backdoor without a full retrain. Team project of 3.', objective: 'Remove backdoor poisoning from a deep-learning intrusion detection system using machine unlearning, cross-verified by a rule-based IDS.', stack: 'Python, PyTorch, Suricata, CIC-IDS2017 (CAIA backdoor variant), Scapy', results: 'Restored 100% detection of backdoor-triggered SSH brute-force flows after unlearning, with clean-traffic accuracy unchanged at 99.27%; the custom Suricata detection rule ran at ~98% accuracy.' },
   '418-CPS': { title: 'CYBER-PHYSICAL SYSTEMS', codename: 'IRONGRID', debrief: 'A resilient control-loop framework for cyber-physical infrastructure that maintains safe operation under fault and false-data injection through redundant estimation and anomaly gating.', objective: 'Secure control-loop framework for resilient cyber-physical infrastructure.', stack: 'C, RTOS, MATLAB/Simulink, MQTT' },
-  '655-DATA': { title: 'DATA ANALYTICS - DRIVERS FOR CYBER CONFLICT', codename: 'REDLINE', debrief: 'A solo quantitative study testing the "democratic vulnerability" hypothesis — that democracies are targeted more often by state-sponsored cyberattacks — using two OLS regression models across 2,261 country-year observations from the CFR Cyber Operations Tracker and V-Dem datasets (2005–2022). INTA 6450.', objective: 'Identify the real structural drivers of state-sponsored cyberattack targeting frequency.', stack: 'R, OLS regression, CFR Cyber Operations Tracker, V-Dem, World Bank Open Data', results: 'Internet penetration — not regime type — is the dominant predictor (p<0.01); once regional clustering was controlled for, democracies were targeted less often, not more, the opposite of the original hypothesis.' },
+  '655-DATA': {
+    title: 'DATA ANALYTICS - DRIVERS FOR CYBER CONFLICT', codename: 'REDLINE', released: true,
+    summary: [
+      "There's a common assumption that democracies get hit by state-sponsored cyberattacks more than other countries — they're open, they're heavily wired up, and they're often on the opposite side of countries like Russia, China, and North Korea. I wanted to check whether that's actually true, or whether it just looks true because of other things going on. So I pulled 17 years of data and ran the numbers.",
+      "I built a dataset with one row per country per year from 2005 to 2022 (about 2,300 rows). For each one I had how many state-sponsored cyberattacks that country got that year (from the CFR Cyber Operations Tracker), how democratic it was (the V-Dem index), plus its wealth, its internet usage, and how capable its government is. Then I ran two regression models: a plain one, and one that also accounts for which region of the world a country is in — because democracies bunch up in places (Western Europe, North America) that already see a lot of cyber activity, and I didn't want to mistake “where you are” for “what kind of government you have.”"
+    ],
+    findings: [
+      "How connected a country is beat everything else. Every extra percentage point of internet usage came with more attacks, and that held steady no matter how I set up the model (p < 0.01).",
+      "The “democracies get hit more” idea didn't hold up. On its own it wasn't a real effect, and once I accounted for region it actually flipped — more democratic countries got targeted less, not more.",
+      "Money and government quality barely mattered. Neither a country's wealth nor how capable its government is explained who got attacked.",
+      "The raw gap is stark too: countries that got attacked had a median internet penetration around 74%, versus about 30% for the ones that didn't."
+    ],
+    closing: [
+      "The takeaway: what makes a country a target isn't its type of government, it's how wired up it is. The “democracies are more vulnerable” story turns out to be mostly geography in disguise — democracies just happen to sit in the most-attacked parts of the world.",
+      "Two caveats: this is a correlation, not proof of cause, and the attack data leans on Western news reporting, so attacks on closed countries like North Korea are almost certainly undercounted."
+    ],
+    skills: {
+      tools: ['R', 'Tableau'],
+      methods: ['OLS regression', 'Regional fixed effects', 'Hypothesis testing', 'Data visualization', 'Cross-national panel data']
+    },
+    docs: [
+      { key: 'slides', label: 'PRESENTATION', file: 'case-files/655-DATA/presentation.pdf', page: 6, info: '13 SLIDES · 1.2 MB — OPENS ON THE ATTACK MAP' },
+      { key: 'paper', label: 'FINAL PAPER', file: 'case-files/655-DATA/final-report.pdf', info: '16 PAGES · 1.6 MB' }
+    ]
+  },
   '824-CLOUD': { title: 'SECURE CLOUD WEB APPLICATION', codename: 'VAULTNET', debrief: 'A zero-trust cloud web application with short-lived credentials, hardened authentication, and append-only audit logging, provisioned entirely through infrastructure-as-code.', objective: 'Zero-trust cloud web application with hardened auth and full audit logging.', stack: 'Node.js, React, AWS, Terraform, OAuth2' },
   '388-EMBED': { title: 'HANDHELD EMBEDDED DEVICE', codename: 'FIELDUNIT', debrief: 'A handheld gaming device built on the mbed LPC1768, inspired by the Game Boy — pushbutton movement/action controls, a uLCD-144G2 display, and speaker feedback drive a maze/coin-collecting game across three selectable difficulty maps, implemented with RTOS threads and a mutex-guarded display. Team project of 4, ECE 4180.', objective: 'Design and build a handheld gaming device from raw microcontroller components.', stack: 'C++, mbed LPC1768 SDK, RTOS, uLCD-144G2, driver circuit design', results: 'Delivered a fully working maze/coin-collection game across 3 difficulty levels with multithreaded, mutex-guarded LCD rendering and combat/pickup sound effects.', demo: 'https://www.youtube.com/watch?v=ezTbqqEYv3w', demoLabel: 'VIEW FIELD DEMO (YOUTUBE)' },
   '512-DROID': { title: 'ANDROID GAME DEVELOPMENT', codename: 'NIGHT-PLAY', debrief: 'A 2D dungeon-crawler built in Java for Android as a 7-person semester team project, showcasing Factory, Strategy, Decorator, and Observer design patterns across enemy AI, player movement, and power-ups, with 3 playable maps and a persistent leaderboard. CS 2340A.', objective: 'Apply core OOP design patterns to build a complete, testable Android game as part of a large team.', stack: 'Java, Android SDK, JUnit 4, Mockito, Espresso, Gradle', results: '2nd-most active contributor on the 7-person team (76 of 390 commits) — built the combat system, 4 enemy types via the Factory pattern, and the core game screens.', repo: 'https://github.com/akakizaki/DungeonCrawler' },
@@ -356,6 +380,9 @@ const renderDocs = function () {
     Array.prototype.forEach.call(tabs.children, function (b, j) {
       b.setAttribute('aria-selected', j === i ? 'true' : 'false');
     });
+    // A doc can name the page it should open on (d.page), so a deck can land on its
+    // key figure instead of the title slide.
+    const target = d.file + (d.page ? '#page=' + d.page : '');
     if (isImage(d.file)) {
       if (image.getAttribute('src') !== d.file) { image.setAttribute('src', d.file); }
       image.alt = d.label;
@@ -364,14 +391,14 @@ const renderDocs = function () {
       el('op-doc-note').hidden = true;
     } else {
       const inline = wide.matches && navigator.pdfViewerEnabled !== false;
-      if (inline && viewer.getAttribute('src') !== d.file) { viewer.setAttribute('src', d.file); }
+      if (inline && viewer.getAttribute('src') !== target) { viewer.setAttribute('src', target); }
       viewer.title = d.label;
       viewer.hidden = !inline;
       image.hidden = true;
       el('op-doc-note').hidden = inline;
     }
     setText('op-doc-info', d.info);
-    open.href = d.file;
+    open.href = target;
     open.textContent = '[ OPEN ' + d.label + ' IN NEW TAB ]';
     open.setAttribute('data-goatcounter-click', d.key + '-' + key);
   };
