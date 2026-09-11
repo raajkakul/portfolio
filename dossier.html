@@ -335,7 +335,32 @@ const DB = {
   },
   '824-CLOUD': { title: 'SECURE CLOUD WEB APPLICATION', codename: 'VAULTNET', debrief: 'A zero-trust cloud web application with short-lived credentials, hardened authentication, and append-only audit logging, provisioned entirely through infrastructure-as-code.', objective: 'Zero-trust cloud web application with hardened auth and full audit logging.', stack: 'Node.js, React, AWS, Terraform, OAuth2' },
   '388-EMBED': { title: 'HANDHELD EMBEDDED DEVICE', codename: 'FIELDUNIT', debrief: 'A handheld gaming device built on the mbed LPC1768, inspired by the Game Boy — pushbutton movement/action controls, a uLCD-144G2 display, and speaker feedback drive a maze/coin-collecting game across three selectable difficulty maps, implemented with RTOS threads and a mutex-guarded display. Team project of 4, ECE 4180.', objective: 'Design and build a handheld gaming device from raw microcontroller components.', stack: 'C++, mbed LPC1768 SDK, RTOS, uLCD-144G2, driver circuit design', results: 'Delivered a fully working maze/coin-collection game across 3 difficulty levels with multithreaded, mutex-guarded LCD rendering and combat/pickup sound effects.', demo: 'https://www.youtube.com/watch?v=ezTbqqEYv3w', demoLabel: 'VIEW FIELD DEMO (YOUTUBE)' },
-  '512-DROID': { title: 'ANDROID GAME DEVELOPMENT', codename: 'NIGHT-PLAY', debrief: 'A 2D dungeon-crawler built in Java for Android as a 7-person semester team project, showcasing Factory, Strategy, Decorator, and Observer design patterns across enemy AI, player movement, and power-ups, with 3 playable maps and a persistent leaderboard. CS 2340A.', objective: 'Apply core OOP design patterns to build a complete, testable Android game as part of a large team.', stack: 'Java, Android SDK, JUnit 4, Mockito, Espresso, Gradle', results: '2nd-most active contributor on the 7-person team (76 of 390 commits) — built the combat system, 4 enemy types via the Factory pattern, and the core game screens.', repo: 'https://github.com/akakizaki/DungeonCrawler' },
+  '512-DROID': {
+    title: 'ANDROID GAME DEVELOPMENT', codename: 'NIGHT-PLAY', released: true,
+    summary: [
+      "A semester-long team project: seven of us building a 2D dungeon crawler for Android in Java. You play a knight moving through three dungeon floors, fighting skeletons, vampires, ghosts and zombies, grabbing power-ups and a key, and reaching the exit before the enemies wear you down. There's a score, a leaderboard that persists between runs, and sound effects for each fight.",
+      "The assignment wasn't really “make a game,” though — it was “use design patterns properly.” This was a software design course, so the grade rode on whether the architecture was clean, not whether the game was fun. Enemies come out of a Factory instead of being hard-coded. Movement is a Strategy, so each direction and each map can vary without rewriting the player. Power-ups are Decorators that wrap the player and stack. The player's state broadcasts to the UI through an Observer. Enemy pathing runs on breadth-first search."
+    ],
+    findingsLabel: 'WHAT I BUILT',
+    findings: [
+      "The combat system across all three maps: landing hits, killing enemies, and the notifications that tell you it happened.",
+      "Two of the four enemy types, skeleton and vampire, and the Factory they're created from — teammates later extended it with ghosts and zombies.",
+      "Movement as a Strategy pattern, rolled out across all three maps.",
+      "The screens holding the game together: main menu, the three map screens, the how-to-play instructions, and the ending screen that shows your most recent attempt.",
+      "Unit tests for the enemy factory and player interactions, plus the checkstyle passes that kept the build clean."
+    ],
+    closing: [
+      "Being one of seven on a shared codebase is its own lesson. 390 commits, everyone on a personal branch, and a merge queue where the job is as much integrating other people's work as writing your own — which is exactly why a good chunk of my commits are merges."
+    ],
+    skills: {
+      tools: ['Java', 'Android SDK', 'Gradle', 'JUnit 4', 'Git'],
+      methods: ['Factory pattern', 'Strategy pattern', 'Decorator pattern', 'Observer pattern', 'Singleton', 'Unit testing', 'BFS pathfinding', 'Team git workflow']
+    },
+    repo: 'https://github.com/akakizaki/DungeonCrawler',
+    docs: [
+      { key: 'maps', label: 'THE THREE DUNGEON FLOORS', file: 'case-files/512-DROID/dungeon-maps.png' }
+    ]
+  },
 };
 
 const id = new URLSearchParams(window.location.search).get('id') || '099-SQUAT';
@@ -450,7 +475,7 @@ const renderDocs = function () {
       image.hidden = true;
       el('op-doc-note').hidden = inline;
     }
-    setText('op-doc-info', d.info);
+    setText('op-doc-info', d.info || '');   // info is optional; don't print "undefined"
     open.href = target;
     open.textContent = '[ OPEN ' + d.label + ' IN NEW TAB ]';
     open.setAttribute('data-goatcounter-click', d.key + '-' + key);
@@ -478,6 +503,8 @@ if (p.released) {
 
   fill(el('op-summary'), 'p', p.summary);
   if (p.findings && p.findings.length) {
+    // Build projects say "WHAT I BUILT"; research ones keep the default.
+    setText('op-findings-label', p.findingsLabel || 'WHAT WE FOUND');
     fill(el('op-findings'), 'li', p.findings);
   } else {
     el('op-findings-label').hidden = true;
